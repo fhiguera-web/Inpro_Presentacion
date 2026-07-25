@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benchmark — Uso interno INPROCONFI</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="img/logo/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#21529E; --azul-osc:#163B78; --amarillo:#F2CB04; --celeste:#17A2DD;
+  --tinta:#1a1d24; --gris:#646b7a; --gris-suave:#f4f6fa; --max-w:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+section[id]{scroll-margin-top:100px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--tinta);background:var(--gris-suave);line-height:1.5}
+h1,h2,h3{font-family:"Raleway",sans-serif;text-wrap:balance}
+a{color:var(--azul);text-decoration:none}
+ul,ol{padding-left:20px}
+nav{position:sticky;top:0;z-index:50;background:var(--azul-osc);color:#fff}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-inner .titulo-nav{font-family:"Raleway",sans-serif;font-weight:800;font-size:16px}
+.nav-inner .titulo-nav span{color:var(--amarillo)}
+.nav-inner a{color:#fff;font-size:13.5px;opacity:.85}
+.nav-inner a:hover{opacity:1}
+.aviso-interno{background:var(--amarillo);color:var(--azul-osc);text-align:center;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px}
+.contenedor{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+section{padding:60px 0 20px}
+.etiqueta{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--celeste);margin-bottom:10px}
+h2{font-size:clamp(24px,3vw,34px);font-weight:800;letter-spacing:-.01em}
+.sub{color:var(--gris);font-size:15px;margin-top:8px;max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;margin-top:30px}
+.card{background:#fff;border-radius:16px;padding:26px 26px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.comp-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.comp-head h3{font-size:18px;font-weight:800}
+.nivel{font-size:11px;font-weight:700;padding:3px 10px;border-radius:980px;letter-spacing:.06em}
+.nivel-1{background:#FDEBEA;color:#B3261E}
+.nivel-2{background:#FDF7DC;color:#8a6d00}
+.nivel-3{background:#E7F6E9;color:#1E7B34}
+.card .rotulo{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gris);margin-top:12px}
+.card p{font-size:13.5px;color:#3a3a3c;margin-top:3px}
+.card .ganar{background:#EFF4FC;border-left:3px solid var(--azul);border-radius:0 10px 10px 0;padding:10px 12px;margin-top:12px;font-size:13px;color:var(--azul-osc)}
+.tabla-wrap{overflow-x:auto;margin-top:28px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.05);min-width:720px}
+th{background:var(--azul);color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.05em;padding:12px 14px;text-align:left}
+th.centro,td.centro{text-align:center}
+th:last-child{background:var(--amarillo);color:var(--azul-osc)}
+td{padding:11px 14px;font-size:13.5px;border-top:1px solid #f0f0f2;color:#3a3a3c}
+td:first-child{font-weight:600;color:var(--tinta)}
+td.col-grupo{background:#FDF7DC;font-weight:800;color:var(--azul)}
+.senal{border-left:4px solid var(--celeste)}
+.senal .plazo{display:inline-block;background:#FDEBEA;color:#B3261E;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:980px;margin-top:10px}
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.filtros button{border:1.5px solid #d8dce4;background:#fff;color:var(--gris);padding:7px 16px;border-radius:980px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.filtros button.activo{background:var(--azul);border-color:var(--azul);color:#fff}
+.articulo{cursor:pointer}
+.articulo .cat{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--celeste)}
+.articulo h3{font-size:17px;font-weight:800;margin:6px 0}
+.articulo .meta{font-size:12px;color:var(--gris)}
+.articulo .cuerpo{display:none;margin-top:14px;border-top:1px solid #eee;padding-top:14px}
+.articulo.abierto .cuerpo{display:block}
+.articulo .cuerpo p,.articulo .cuerpo li{font-size:14px;color:#3a3a3c;margin-bottom:8px}
+.articulo .check{background:#E7F6E9;border-radius:12px;padding:14px 16px;margin-top:12px}
+.articulo .check b{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:#1E7B34}
+.articulo .check li{font-size:13.5px;margin:4px 0 0 16px}
+.articulo .leer{margin-top:12px;font-size:13px;font-weight:700;color:var(--celeste)}
+.nota-pie{font-size:12.5px;color:var(--gris);margin-top:18px}
+/* Funnel de prospección */
+.funnel-contadores{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 6px}
+.fc-item{
+  background:#fff;border-radius:14px;padding:10px 18px;box-shadow:0 2px 8px rgba(0,0,0,.05);
+  font-size:13px;color:var(--gris);display:flex;align-items:center;gap:8px;
+}
+.fc-item b{font-size:19px;font-family:"Raleway",sans-serif;color:var(--azul);font-variant-numeric:tabular-nums}
+.tabla-funnel input[type="text"],.tabla-funnel input[type="email"]{
+  width:100%;min-width:110px;border:1px solid #dfe3ea;border-radius:8px;padding:6px 8px;
+  font-size:12.5px;font-family:inherit;background:#fcfdff;
+}
+.tabla-funnel input[type="text"]:focus,.tabla-funnel input[type="email"]:focus{outline:none;border-color:var(--celeste)}
+.tabla-funnel input[type="checkbox"]{width:17px;height:17px;accent-color:#1E7B34;cursor:pointer}
+.tabla-funnel td{vertical-align:middle}
+.btn-mini{
+  border:1.5px solid var(--azul);background:#fff;color:var(--azul);
+  padding:5px 12px;border-radius:980px;font-size:11.5px;font-weight:700;cursor:pointer;
+  font-family:inherit;white-space:nowrap;
+}
+.btn-mini:hover{background:var(--azul);color:#fff}
+.fila-respondio{background:#F0FAF2}
+.guardado-flash{
+  position:fixed;bottom:24px;right:24px;background:#1E7B34;color:#fff;
+  padding:10px 20px;border-radius:980px;font-size:13px;font-weight:700;
+  opacity:0;transition:opacity .3s;pointer-events:none;z-index:99;
+}
+.guardado-flash.ver{opacity:1}
+
+.acciones-claude{
+  background:#fff;border:1.5px dashed var(--celeste);border-radius:16px;
+  padding:20px 24px;margin-top:28px;
+}
+.acciones-claude .ac-titulo{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--azul);margin-bottom:12px}
+.acciones-claude .ac-botones{display:flex;flex-wrap:wrap;gap:10px}
+.btn-accion{
+  border:1.5px solid var(--azul);background:#fff;color:var(--azul);
+  padding:8px 16px;border-radius:980px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;
+  transition:all .2s;
+}
+.btn-accion:hover{background:var(--azul);color:#fff}
+.btn-accion.copiado{background:#1E7B34;border-color:#1E7B34;color:#fff}
+.acciones-claude .ac-ayuda{font-size:12px;color:var(--gris);margin-top:10px}
+footer{padding:40px 24px 60px;text-align:center;font-size:12.5px;color:var(--gris)}
+</style>
+</head>
+<body>
+
+<div class="aviso-interno">Documento de trabajo — uso interno INPROCONFI · No compartir con clientes</div>
+<nav>
+  <div class="nav-inner">
+    <div class="titulo-nav">BENCHMARK <span>COMPETITIVO</span></div>
+    <div>
+      <a href="#competidores">Competidores</a> ·
+      <a href="#matriz">Matriz</a> ·
+      <a href="#icp">Cuentas ICP</a> ·
+      <a href="#senales">Señales</a> ·
+      <a href="#precios">Precios</a> ·
+      <a href="#blog">Blog</a> ·
+      <a href="index.html">← Presentación</a>
+    </div>
+  </div>
+</nav>
+
+<section id="competidores">
+  <div class="contenedor">
+    <span class="etiqueta">Inteligencia competitiva</span>
+    <h2>Principales competidores</h2>
+    <p class="sub">Mapa de 12 competidores en 3 niveles, con su debilidad explotable y la pregunta que gana. EMS Testing aparece en mapas externos como rival — es del grupo: comunicar el holding lo saca de la mesa.</p>
+    <div class="grid" id="grid-competidores"></div>
+  </div>
+</section>
+
+<section id="matriz">
+  <div class="contenedor">
+    <span class="etiqueta">Quién hace qué</span>
+    <h2>Matriz de servicios vs. competencia</h2>
+    <p class="sub">● cobertura completa · ◐ parcial · — fuera de su alcance. La última columna es la razón de ser del holding.</p>
+    <div class="tabla-wrap"><table id="tabla-matriz"></table></div>
+  </div>
+</section>
+
+<section id="icp">
+  <div class="contenedor">
+    <span class="etiqueta">Prospección</span>
+    <h2>Funnel de prospección — Radar ICP</h2>
+    <p class="sub">Complete los datos de contacto y marque el avance de cada cuenta. Todo se guarda en este equipo automáticamente. El botón «Ficha» abre la ficha del cliente en la presentación con los datos precargados.</p>
+    <div class="funnel-contadores" id="funnel-contadores"></div>
+    <div class="tabla-wrap"><table id="tabla-icp" class="tabla-funnel"></table></div>
+    <div style="margin-top:14px"><button class="btn-accion" id="btn-funnel-csv">⬇ Exportar funnel (CSV)</button></div>
+    <div class="acciones-claude">
+      <div class="ac-titulo">⚡ Acciones con Claude — clic para copiar la instrucción y pegarla en el chat</div>
+      <div class="ac-botones">
+        <button class="btn-accion" data-prompt="escribe la secuencia de cold-email para las cuentas prioridad A del radar ICP con la skill cold-email">✉ Secuencia cold-email (cuentas A)</button>
+        <button class="btn-accion" data-prompt="construye una lista de prospectos con la skill prospecting, indicando sector y ciudad">⊕ Ampliar radar de prospectos</button>
+        <button class="btn-accion" data-prompt="mapea 3 decisores por cuenta en LinkedIn para las cuentas prioridad A del radar ICP">◎ Mapear decisores (cuentas A)</button>
+        <button class="btn-accion" data-prompt="actualiza el benchmark">↻ Actualizar benchmark</button>
+        <button class="btn-accion" data-prompt="busca adjudicaciones SERCOP de [nombre del competidor]">$ Buscar adjudicaciones SERCOP</button>
+        <button class="btn-accion" data-prompt="escribe un artículo sobre [tema] para el blog interno">✎ Nuevo artículo del blog</button>
+        <button class="btn-accion" data-prompt="actualiza las noticias de la página">📰 Actualizar noticias</button>
+      </div>
+      <div class="ac-ayuda">La página no ejecuta las skills directamente: cada botón copia la instrucción exacta al portapapeles para pegarla en Claude Code.</div>
+    </div>
+  </div>
+</section>
+
+<section id="senales">
+  <div class="contenedor">
+    <span class="etiqueta">Oportunidades</span>
+    <h2>Señales del mercado para aprovechar</h2>
+    <p class="sub">Eventos que abren puertas — cada señal con su acción y plazo. Se alimentan de la sección de noticias y de SERCOP.</p>
+    <div class="grid" id="grid-senales"></div>
+  </div>
+</section>
+
+<section id="precios">
+  <div class="contenedor">
+    <span class="etiqueta">Benchmark de precios</span>
+    <h2>Adjudicaciones públicas (SERCOP)</h2>
+    <p class="sub">Los precios privados de la competencia no son públicos y no se estiman aquí. La fuente legítima son las adjudicaciones de contratación pública — montos reales por tipo de servicio. Completar con el registro interno de propuestas ganadas/perdidas.</p>
+    <div class="tabla-wrap"><table id="tabla-precios"></table></div>
+    <p class="nota-pie">Para ampliar: pedir a Claude «busca adjudicaciones SERCOP de [competidor]». Regla: solo montos verificados, nunca estimaciones inventadas.</p>
+  </div>
+</section>
+
+<section id="blog">
+  <div class="contenedor">
+    <span class="etiqueta">Formación comercial</span>
+    <h2>Blog interno de estrategias</h2>
+    <p class="sub">Lecturas de 3-5 minutos con checklist aplicable la misma semana. Clic en un artículo para abrirlo.</p>
+    <div class="filtros" id="filtros-blog"></div>
+    <div class="grid" id="grid-blog"></div>
+  </div>
+</section>
+
+<footer>
+  Benchmark competitivo INPROCONFI · Actualizado 10-jul-2026 · Para refrescar: «actualiza el benchmark» ·
+  Fuentes y battlecards completas en <b>VENTAS B2B - ABM/Posicionamiento_Competitivo_Grupo_Inproconfi.md</b>
+</footer>
+
+<script src="datos/benchmark.js?v=4"></script>
+<script src="datos/blog-estrategias.js?v=1"></script>
+<script>
+/* Competidores */
+const gc = document.getElementById("grid-competidores");
+COMPETIDORES.forEach(c => {
+  const d = document.createElement("div");
+  d.className = "card";
+  d.innerHTML = `
+    <div class="comp-head"><h3>${c.nombre}</h3><span class="nivel nivel-${c.nivel}">Nivel ${c.nivel}</span></div>
+    <div class="rotulo">Servicios</div><p>${c.servicios}</p>
+    <div class="rotulo">Fortaleza</div><p>${c.fortaleza}</p>
+    <div class="rotulo">Debilidad explotable</div><p>${c.debilidad}</p>
+    <div class="ganar"><b>Cómo ganar:</b> ${c.ganar}</div>`;
+  gc.appendChild(d);
+});
+
+/* Matriz */
+const tm = document.getElementById("tabla-matriz");
+tm.innerHTML = "<thead><tr><th>Servicio</th>" + MATRIZ_SERVICIOS.columnas.map(c=>`<th class="centro">${c}</th>`).join("") + "</tr></thead>" +
+  "<tbody>" + MATRIZ_SERVICIOS.filas.map(f =>
+    "<tr><td>"+f.s+"</td>" + f.v.map((v,i)=>`<td class="centro${i===f.v.length-1?" col-grupo":""}">${v}</td>`).join("") + "</tr>"
+  ).join("") + "</tbody>";
+
+/* ===== Funnel de prospección interactivo =====
+   Datos base en CUENTAS_ICP; ediciones y checks del usuario en
+   localStorage ("funnel_icp"), fusionados al renderizar. */
+const FUNNEL_KEY = "funnel_icp";
+const leerFunnel = () => JSON.parse(localStorage.getItem(FUNNEL_KEY) || "{}");
+const guardarFunnel = d => localStorage.setItem(FUNNEL_KEY, JSON.stringify(d));
+const flash = (() => {
+  const el = document.createElement("div");
+  el.className = "guardado-flash"; el.textContent = "✓ Guardado";
+  document.body.appendChild(el);
+  let t; return () => { el.classList.add("ver"); clearTimeout(t); t = setTimeout(() => el.classList.remove("ver"), 1200); };
+})();
+
+const ti = document.getElementById("tabla-icp");
+const ordenP = {A:0,B:1,C:2};
+const pillP = p => `<span class="nivel ${p==="A"?"nivel-3":p==="B"?"nivel-2":"nivel-1"}" style="font-size:12px">${p}</span>`;
+
+function estadoFunnel(reg){
+  if (reg.respondio) return "🟢 Respondió — a ficha";
+  if (reg.enviado)   return "✉ Correo enviado";
+  if (reg.contactado)return "◎ Contactado";
+  return "Sin contactar";
+}
+
+function pintarFunnel(){
+  const ov = leerFunnel();
+  const cuentas = CUENTAS_ICP.slice().sort((a,b)=>(ordenP[a.prioridad]??9)-(ordenP[b.prioridad]??9));
+  ti.innerHTML = "<thead><tr><th>P</th><th>Cuenta</th><th>Contacto</th><th>Cargo</th><th>Correo</th>" +
+    "<th class='centro'>Contactado</th><th class='centro'>Correo enviado</th><th class='centro'>Respondió</th><th>Estado</th><th></th></tr></thead><tbody>" +
+    cuentas.map(c => {
+      const r = ov[c.cuenta] || {};
+      const contacto = r.contacto ?? c.contacto ?? "";
+      const cargo = r.cargo ?? c.cargo ?? "";
+      const correo = r.correo ?? "";
+      return `<tr data-cuenta="${c.cuenta}" class="${r.respondio?"fila-respondio":""}">
+        <td class="centro">${pillP(c.prioridad||"C")}</td>
+        <td title="${(c.porque||"").replace(/"/g,"&quot;")}"><b>${c.cuenta}</b><br><span style="font-size:11px;color:var(--gris)">${c.sector} · ${c.ciudad||""}</span>${c.web?`<br><a href="https://${c.web}" target="_blank" rel="noopener" style="font-size:11px">${c.web}</a>`:""}</td>
+        <td><input type="text" data-campo="contacto" value="${contacto.replace(/"/g,"&quot;")}" placeholder="Nombre"></td>
+        <td><input type="text" data-campo="cargo" value="${cargo.replace(/"/g,"&quot;")}" placeholder="Cargo"></td>
+        <td><input type="email" data-campo="correo" value="${correo.replace(/"/g,"&quot;")}" placeholder="correo@…"></td>
+        <td class="centro"><input type="checkbox" data-campo="contactado" ${r.contactado?"checked":""}></td>
+        <td class="centro"><input type="checkbox" data-campo="enviado" ${r.enviado?"checked":""}></td>
+        <td class="centro"><input type="checkbox" data-campo="respondio" ${r.respondio?"checked":""}></td>
+        <td style="font-size:12px;white-space:nowrap">${estadoFunnel(r)}</td>
+        <td><button class="btn-mini" data-ficha="${c.cuenta}">→ Ficha</button></td>
+      </tr>`;
+    }).join("") + "</tbody>";
+  pintarContadores();
+}
+
+function pintarContadores(){
+  const ov = leerFunnel();
+  const regs = CUENTAS_ICP.map(c => ov[c.cuenta] || {});
+  const n = f => regs.filter(r => r[f]).length;
+  document.getElementById("funnel-contadores").innerHTML = `
+    <div class="fc-item"><b>${CUENTAS_ICP.length}</b> cuentas en radar</div>
+    <div class="fc-item"><b>${n("contactado")}</b> contactadas</div>
+    <div class="fc-item"><b>${n("enviado")}</b> con correo enviado</div>
+    <div class="fc-item"><b>${n("respondio")}</b> respondieron</div>`;
+}
+
+ti.addEventListener("change", e => {
+  const fila = e.target.closest("tr[data-cuenta]");
+  const campo = e.target.dataset.campo;
+  if (!fila || !campo) return;
+  const ov = leerFunnel();
+  const reg = ov[fila.dataset.cuenta] || {};
+  reg[campo] = e.target.type === "checkbox" ? e.target.checked : e.target.value.trim();
+  reg.actualizado = new Date().toLocaleDateString("es-EC");
+  ov[fila.dataset.cuenta] = reg;
+  guardarFunnel(ov);
+  flash();
+  fila.classList.toggle("fila-respondio", !!reg.respondio);
+  fila.querySelector("td:nth-last-child(2)").textContent = estadoFunnel(reg);
+  pintarContadores();
+});
+
+/* → Ficha: precargar datos y abrir la ficha del cliente en la presentación */
+ti.addEventListener("click", e => {
+  const btn = e.target.closest("[data-ficha]");
+  if (!btn) return;
+  const cuenta = btn.dataset.ficha;
+  const base = CUENTAS_ICP.find(c => c.cuenta === cuenta) || {};
+  const r = leerFunnel()[cuenta] || {};
+  localStorage.setItem("ficha_prefill", JSON.stringify({
+    empresa: cuenta,
+    nombre: r.contacto ?? base.contacto ?? "",
+    cargo: r.cargo ?? base.cargo ?? "",
+    correo: r.correo ?? "",
+    sector: base.sector || ""
+  }));
+  window.location.href = "index.html#ficha";
+});
+
+/* Exportar funnel a CSV */
+document.getElementById("btn-funnel-csv").addEventListener("click", () => {
+  const ov = leerFunnel();
+  const esc = v => '"' + String(v ?? "").replace(/"/g,'""') + '"';
+  const filas = CUENTAS_ICP.map(c => {
+    const r = ov[c.cuenta] || {};
+    return [c.prioridad, c.cuenta, c.sector, c.ciudad, r.contacto ?? c.contacto ?? "", r.cargo ?? c.cargo ?? "",
+      r.correo ?? "", r.contactado?"SÍ":"no", r.enviado?"SÍ":"no", r.respondio?"SÍ":"no", r.actualizado ?? "", c.porque].map(esc).join(";");
+  });
+  const csv = "﻿" + ["Prioridad","Cuenta","Sector","Ciudad","Contacto","Cargo","Correo","Contactado","Correo enviado","Respondió","Actualizado","Señal"].map(esc).join(";") + "\r\n" + filas.join("\r\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([csv], {type:"text/csv;charset=utf-8"}));
+  a.download = "funnel_prospeccion_inproconfi.csv";
+  a.click();
+});
+
+pintarFunnel();
+
+/* Señales */
+const gs = document.getElementById("grid-senales");
+SENALES.forEach(s => {
+  const d = document.createElement("div");
+  d.className = "card senal";
+  d.innerHTML = `<h3 style="font-size:15.5px;font-weight:800">${s.senal}</h3>
+    <div class="rotulo">Cuentas afectadas</div><p>${s.cuentas}</p>
+    <div class="rotulo">Acción</div><p>${s.accion}</p>
+    <span class="plazo">⏱ ${s.plazo}</span>
+    <p style="font-size:11.5px;color:var(--gris);margin-top:8px">Fuente: ${s.fuente}</p>`;
+  gs.appendChild(d);
+});
+
+/* Precios */
+const tp = document.getElementById("tabla-precios");
+tp.innerHTML = "<thead><tr><th>Proceso</th><th>Entidad</th><th>Ganador</th><th>Monto</th><th>Año</th><th>Nota</th></tr></thead><tbody>" +
+  ADJUDICACIONES.map(a=>`<tr><td>${a.proceso}</td><td>${a.entidad}</td><td>${a.ganador}</td><td>${a.monto}</td><td>${a.anio}</td><td>${a.nota}</td></tr>`).join("") + "</tbody>";
+
+/* Blog */
+const gb = document.getElementById("grid-blog");
+ARTICULOS.forEach(a => {
+  const d = document.createElement("article");
+  d.className = "card articulo";
+  d.dataset.categoria = a.categoria;
+  d.innerHTML = `
+    <span class="cat">${a.categoria}</span>
+    <h3>${a.titulo}</h3>
+    <div class="meta">Lectura: ${a.lectura}</div>
+    <p style="font-size:13.5px;color:#3a3a3c;margin-top:8px">${a.resumen}</p>
+    <div class="leer">Leer artículo ▾</div>
+    <div class="cuerpo">${a.cuerpo}
+      <div class="check"><b>Aplícalo esta semana</b><ul>${a.checklist.map(c=>`<li>${c}</li>`).join("")}</ul></div>
+    </div>`;
+  d.addEventListener("click", () => d.classList.toggle("abierto"));
+  gb.appendChild(d);
+});
+/* Acciones con Claude: copiar instrucción al portapapeles */
+document.querySelectorAll(".btn-accion").forEach(b => {
+  b.addEventListener("click", () => {
+    navigator.clipboard.writeText(b.dataset.prompt).then(() => {
+      const orig = b.textContent;
+      b.textContent = "✓ Copiado — pégalo en Claude";
+      b.classList.add("copiado");
+      setTimeout(() => { b.textContent = orig; b.classList.remove("copiado"); }, 2200);
+    });
+  });
+});
+
+const fb = document.getElementById("filtros-blog");
+["Todas", ...new Set(ARTICULOS.map(a=>a.categoria))].forEach((c,i)=>{
+  const b=document.createElement("button");
+  b.textContent=c;
+  if(i===0)b.classList.add("activo");
+  b.addEventListener("click",()=>{
+    fb.querySelectorAll("button").forEach(x=>x.classList.remove("activo"));
+    b.classList.add("activo");
+    gb.querySelectorAll(".articulo").forEach(el=>{
+      el.style.display=(c==="Todas"||el.dataset.categoria===c)?"":"none";
+    });
+  });
+  fb.appendChild(b);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Carpeta de trabajo: material fotográfico en bruto sin clasificar (~272 MB).
+# No se publica: incluye videos y ZIP que exceden el límite de 100 MB por
+# archivo de GitHub. Las fotos ya clasificadas viven en las demás subcarpetas
+# de img/ y sí se versionan.
+img/_NUEVAS_FOTOS/
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*~

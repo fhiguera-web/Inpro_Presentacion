@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INPROCONFI S.A. — Ingeniería, Proyectos, Construcción y Fiscalización</title>
+<meta name="description" content="Soluciones eléctricas para entornos industriales exigentes e infraestructura crítica. Subestaciones, media tensión, transformadores, automatización, protección y generación de respaldo.">
+<link rel="icon" type="image/png" href="img/logo/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   PALETA INSTITUCIONAL — Manual de Identidad Corporativa
+   Azul corporativo : #21529E  (C93 M69 Y3 K0)
+   Amarillo         : #F2CB04  (C7 M18 Y94 K0)
+   Celeste          : #17A2DD  (C74 M18 Y0 K0)
+   Tipografía secundaria de marca: Raleway (títulos)
+   ============================================================ */
+:root{
+  --azul:      #21529E;
+  --azul-osc:  #163B78;
+  --amarillo:  #F2CB04;
+  --celeste:   #17A2DD;
+  --tinta:     #1a1d24;
+  --gris:      #646b7a;
+  --gris-suave:#f4f6fa;
+  --blanco:    #ffffff;
+  --max-w:     1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+section[id],div[id].full-bleed{scroll-margin-top:70px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color:var(--tinta);
+  background:var(--blanco);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.titulo{font-family:"Raleway",-apple-system,"Segoe UI",sans-serif;text-wrap:balance}
+img{max-width:100%;display:block}
+a{color:var(--azul);text-decoration:none}
+ul{list-style:none}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--celeste);outline-offset:2px;
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .revelar{opacity:1 !important;transform:none !important;transition:none !important}
+  *{animation:none !important}
+}
+.ic-svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Navegación ---------- */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
+.nav-inner{
+  max-width:var(--max-w);margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;height:60px;
+}
+.nav-inner img{height:36px}
+.nav-links{display:flex;align-items:center;gap:22px;font-size:13px}
+.nav-links a{
+  color:var(--tinta);opacity:.8;letter-spacing:.01em;position:relative;padding:4px 0;
+  transition:opacity .3s ease, color .3s ease;
+}
+.nav-links a:not(.nav-cta):not(.nav-ficha):not(.nav-interno)::after{
+  content:"";position:absolute;left:0;bottom:-1px;width:100%;height:1.5px;
+  background:var(--celeste);border-radius:1px;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s cubic-bezier(.22,1,.36,1);
+}
+.nav-links a:hover{opacity:1;color:var(--azul)}
+.nav-links a:not(.nav-cta):not(.nav-ficha):not(.nav-interno):hover::after{transform:scaleX(1)}
+.nav-cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--azul);color:#fff !important;height:32px;padding:0 18px;
+  border-radius:980px;font-weight:700;line-height:1;opacity:1 !important;
+  transition:background .3s ease, transform .3s ease;
+}
+.nav-cta:hover{background:var(--azul-osc);transform:translateY(-1px)}
+@media(max-width:900px){.nav-links a:not(.nav-cta){display:none}}
+
+/* ---------- Hero ---------- */
+.hero{
+  text-align:center;
+  padding:96px 24px 56px;
+}
+.hero h1{
+  font-size:clamp(40px,6vw,76px);
+  font-weight:800;letter-spacing:-.02em;line-height:1.05;
+}
+.hero h1 span{color:var(--azul)}
+.hero p{
+  font-size:clamp(18px,2.2vw,26px);
+  color:var(--gris);max-width:760px;margin:22px auto 0;font-weight:400;
+}
+.hero .acciones{margin-top:34px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-block;padding:13px 30px;border-radius:980px;font-size:16px;font-weight:500;
+  transition:transform .2s, box-shadow .2s, background .2s;border:none;cursor:pointer;
+}
+.btn-azul{background:var(--azul);color:#fff}
+.btn-azul:hover{background:var(--azul-osc);transform:translateY(-1px)}
+.btn-borde{border:1.5px solid var(--azul);color:var(--azul);background:transparent}
+.btn-borde:hover{background:var(--azul);color:#fff}
+.hero-img{
+  margin-top:64px;
+  width:100%;height:72vh;min-height:420px;
+  object-fit:cover;
+}
+.hero-collage{
+  margin-top:64px;
+  display:grid;
+  grid-template-columns:1.7fr 1fr 1fr;
+  grid-template-rows:repeat(2, 38vh);
+  gap:6px;
+}
+.hero-collage img{
+  width:100%;height:100%;object-fit:cover;
+}
+.hero-collage img:first-child{grid-row:span 2}
+@media(max-width:800px){
+  .hero-collage{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3, 30vh)}
+  .hero-collage img:first-child{grid-column:span 2;grid-row:span 1}
+  .hero-collage img:nth-child(n+5){display:none}
+}
+
+/* ---------- Secciones genéricas ---------- */
+section{padding:110px 0}
+.contenedor{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.etiqueta{
+  display:inline-block;font-size:13px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--celeste);margin-bottom:14px;
+}
+.titulo{
+  font-size:clamp(32px,4.5vw,56px);font-weight:800;letter-spacing:-.02em;line-height:1.08;
+}
+.subtitulo{font-size:clamp(17px,2vw,22px);color:var(--gris);margin-top:18px;max-width:820px}
+.centrado{text-align:center}
+.centrado .subtitulo{margin-left:auto;margin-right:auto}
+.linea-amarilla{width:64px;height:4px;background:var(--amarillo);border-radius:2px;margin:26px 0 0}
+.centrado .linea-amarilla{margin-left:auto;margin-right:auto}
+.fondo-suave{background:var(--gris-suave)}
+
+/* ---------- El Grupo (holding) ---------- */
+.holding-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:64px;
+}
+@media(max-width:900px){.holding-grid{grid-template-columns:1fr}}
+.empresa-card{
+  background:#fff;border:1px solid #ececec;border-radius:24px;padding:44px 36px;text-align:center;
+  transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1);
+}
+.empresa-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.08)}
+.empresa-logo{
+  height:110px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;
+}
+.empresa-logo img{max-height:110px;max-width:200px;object-fit:contain}
+.monograma{
+  width:96px;height:96px;border-radius:24px;background:var(--azul);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:"Raleway",sans-serif;font-size:52px;font-weight:800;color:var(--amarillo);
+}
+.empresa-card h3{font-size:21px;font-weight:800;letter-spacing:.01em}
+.empresa-rol{
+  font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--celeste);margin:8px 0 16px;
+}
+.empresa-card p{font-size:14.5px;color:#3a3a3c}
+.matriz-scroll{overflow-x:auto;margin-top:36px}
+.matriz{
+  width:100%;min-width:820px;border-collapse:collapse;background:#fff;
+  border-radius:18px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);
+}
+.matriz th{
+  background:var(--gris-suave);color:var(--gris);font-size:12.5px;font-weight:600;
+  letter-spacing:.04em;text-transform:uppercase;padding:16px 18px;text-align:center;
+}
+.matriz th:first-child{text-align:left;color:var(--tinta)}
+.matriz th.col-grupo{background:var(--azul);color:#fff}
+.matriz td{
+  padding:14px 18px;border-top:1px solid #f0f0f2;font-size:15px;color:#3a3a3c;
+  text-align:center;
+}
+.matriz td:first-child{text-align:left;font-weight:600;color:var(--tinta)}
+.matriz td.col-grupo{background:#EFF4FC;color:var(--azul);font-weight:800;font-size:17px}
+.leyenda-matriz{margin-top:14px;font-size:13px;color:var(--gris);text-align:center}
+
+/* ---------- Proyecto insignia SPS ---------- */
+.sps{padding:0 0 110px;background:#fff}
+.sps-banner{position:relative;width:100%;height:82vh;min-height:500px;overflow:hidden}
+.sps-banner > img{width:100%;height:100%;object-fit:cover}
+.sps-velo{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(10,25,60,.78) 0%, rgba(10,25,60,.25) 55%, rgba(10,25,60,.05));
+  display:flex;align-items:flex-end;
+}
+.sps-velo .contenedor{padding-bottom:70px;color:#fff;width:100%}
+.sps-velo h2{font-size:clamp(30px,4.5vw,56px);font-weight:800;letter-spacing:-.02em;line-height:1.08}
+.sps-velo p{font-size:clamp(16px,2vw,20px);margin-top:16px;max-width:760px;opacity:.94}
+.sps-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:-64px;position:relative;z-index:2;
+}
+@media(max-width:900px){.sps-stats{grid-template-columns:repeat(2,1fr);margin-top:-40px}}
+.sps-stats > div{
+  background:#fff;border-radius:20px;padding:28px 26px;box-shadow:0 10px 34px rgba(0,0,0,.14);
+  border-top:4px solid var(--amarillo);
+}
+.sps-stats .num{font-family:"Raleway",sans-serif;font-size:clamp(26px,2.8vw,40px);font-weight:800;color:var(--azul);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.sps-stats .txt{color:var(--gris);font-size:13.5px;margin-top:6px;line-height:1.4}
+.sps .dos-col img{height:560px}
+.sps-aplicaciones{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:60px;
+}
+@media(max-width:960px){.sps-aplicaciones{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.sps-aplicaciones{grid-template-columns:1fr}}
+.aplicacion{
+  background:var(--gris-suave);border-radius:20px;padding:32px 30px;
+  border-left:4px solid var(--celeste);
+}
+.aplicacion .ap-unidad{
+  font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--azul);margin-bottom:12px;
+}
+.aplicacion p{font-size:14.5px;color:#3a3a3c}
+.aplicacion-foto{padding:0;overflow:hidden;border-left:none;position:relative;min-height:240px}
+.aplicacion-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.aplicacion-foto .ap-pie{
+  position:absolute;left:0;right:0;bottom:0;padding:14px 18px;font-size:12.5px;color:#fff;
+  background:linear-gradient(to top, rgba(10,25,60,.85), transparent);
+}
+
+/* ---------- Por qué nos prefieren ---------- */
+.razones{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:26px;margin-top:64px;
+}
+.razon{
+  background:#fff;border-radius:20px;box-shadow:0 2px 10px rgba(0,0,0,.05);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1);
+}
+.razon:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.08)}
+.razon-foto{position:relative;height:180px;flex:none}
+.razon-foto img{width:100%;height:100%;object-fit:cover}
+.razon .icono{
+  width:52px;height:52px;border-radius:14px;background:var(--azul);
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;color:var(--amarillo);
+  position:absolute;left:24px;bottom:-18px;box-shadow:0 4px 14px rgba(0,0,0,.22);
+  border:2.5px solid #fff;
+}
+.razon-cuerpo{padding:34px 28px 26px;display:flex;flex-direction:column;flex:1}
+.razon h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.razon p{font-size:14.5px;color:var(--gris)}
+.razon .evidencia{
+  margin-top:auto;padding-top:16px;font-size:13px;color:var(--azul);font-weight:600;
+  display:flex;gap:8px;align-items:flex-start;line-height:1.45;
+}
+.razon .evidencia::before{
+  content:"";flex:none;width:16px;height:16px;margin-top:1px;border-radius:50%;
+  background:var(--amarillo) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2321529E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg>') center/10px no-repeat;
+}
+
+/* ---------- Casos de éxito (historias) ---------- */
+.casos-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(500px,1fr));gap:32px;margin-top:64px;
+}
+@media(max-width:560px){.casos-grid{grid-template-columns:1fr}}
+.caso{
+  background:#fff;border-radius:24px;overflow:hidden;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+  transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1);
+  display:flex;flex-direction:column;
+}
+.caso:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.09)}
+.caso img{width:100%;height:260px;object-fit:cover;transition:transform 1.4s cubic-bezier(.22,1,.36,1)}
+.caso:hover > img{transform:scale(1.03)}
+.caso-cuerpo{padding:32px 34px 36px;flex:1;display:flex;flex-direction:column}
+.caso-sector{
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--celeste);margin-bottom:10px;
+}
+.caso h3{font-size:17px;font-weight:600;color:var(--gris);letter-spacing:-.01em}
+.caso h4{font-family:"Raleway",sans-serif;font-size:22px;font-weight:700;color:var(--tinta);margin:6px 0 20px;line-height:1.25}
+.caso .acto{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--azul);margin-bottom:6px}
+.caso .reto{font-size:15px;color:#3a3a3c;margin-bottom:18px}
+.caso ul{margin-bottom:18px}
+.caso li{
+  font-size:14.5px;color:#3a3a3c;padding:4px 0 4px 20px;position:relative;
+}
+.caso li::before{
+  content:"";position:absolute;left:0;top:12px;width:8px;height:8px;border-radius:50%;
+  background:var(--amarillo);
+}
+.caso .beneficio{
+  margin-top:auto;background:#FDF7DC;border-left:4px solid var(--amarillo);
+  border-radius:0 12px 12px 0;padding:16px 18px;font-size:15px;color:#3a3a3c;
+}
+.caso .beneficio strong{color:var(--azul)}
+
+/* ---------- Historia / Misión / Visión ---------- */
+.dos-col{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:70px;
+}
+@media(max-width:900px){.dos-col{grid-template-columns:1fr;gap:36px}}
+.dos-col img{width:100%;height:520px;object-fit:cover;border-radius:24px}
+.dos-col h3{font-size:28px;font-weight:700;margin-bottom:14px;letter-spacing:-.01em}
+.dos-col p{color:#3a3a3c;font-size:17px;margin-bottom:18px}
+.mv-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:70px;
+}
+@media(max-width:800px){.mv-grid{grid-template-columns:1fr}}
+.mv-card{
+  background:#fff;border-radius:24px;padding:48px 44px;
+  border-top:5px solid var(--amarillo);box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+.mv-card:last-child{border-top-color:var(--celeste)}
+.mv-card h3{font-size:26px;font-weight:700;margin-bottom:16px;color:var(--azul)}
+.mv-card p{color:#3a3a3c;font-size:16.5px}
+.cifras{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:80px;text-align:center;
+}
+@media(max-width:800px){.cifras{grid-template-columns:repeat(2,1fr)}}
+.cifras .num{font-family:"Raleway",sans-serif;font-size:clamp(36px,4vw,54px);font-weight:800;color:var(--azul);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.cifras .txt{color:var(--gris);font-size:15px;margin-top:4px}
+
+/* ---------- Unidades de negocio ---------- */
+.unidad{
+  display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
+  padding:70px 0;border-bottom:1px solid #ececec;
+}
+.unidad:last-of-type{border-bottom:none}
+@media(max-width:900px){.unidad{grid-template-columns:1fr;gap:32px}}
+.unidad img{width:100%;height:480px;object-fit:cover;border-radius:24px}
+.unidad.invertida .texto{order:-1}
+@media(max-width:900px){.unidad.invertida .texto{order:0}}
+.unidad .num-unidad{
+  font-size:14px;font-weight:700;color:var(--amarillo);letter-spacing:.15em;margin-bottom:10px;
+}
+.unidad h3{font-size:clamp(26px,3vw,38px);font-weight:700;letter-spacing:-.015em;margin-bottom:20px}
+.unidad li{
+  font-size:16px;color:#3a3a3c;padding:7px 0 7px 30px;position:relative;
+}
+.unidad li::before{
+  content:"";position:absolute;left:0;top:14px;width:12px;height:3px;border-radius:2px;
+  background:var(--celeste);
+}
+
+/* ---------- Productos ---------- */
+.prod-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;margin-top:64px;
+}
+.prod{
+  background:var(--gris-suave);border-radius:24px;overflow:hidden;
+  transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1);
+  display:flex;flex-direction:column;
+}
+.prod:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.07)}
+.prod img{width:100%;height:240px;object-fit:cover;background:#fff}
+.prod img.contener{object-fit:contain;padding:18px}
+.prod-cuerpo{padding:26px 28px 30px;flex:1}
+.prod-marca{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);margin-bottom:8px}
+.prod h3{font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.prod p{font-size:14.5px;color:#3a3a3c}
+.prod a{display:inline-block;margin-top:14px;font-size:14.5px;font-weight:600}
+.prod a:hover{text-decoration:underline}
+.woodward-linea{
+  margin-top:56px;background:#fff;border:1px solid #e6e9f0;border-radius:28px;padding:44px 44px 40px;
+}
+@media(max-width:640px){.woodward-linea{padding:30px 24px}}
+.wl-cabecera{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;
+  padding-bottom:26px;border-bottom:1px solid #eceff5;
+}
+.wl-cabecera h3{font-size:clamp(20px,2.4vw,27px);font-weight:700;letter-spacing:-.01em;margin-top:6px}
+.wl-cabecera p{font-size:15px;color:var(--gris);max-width:380px}
+.wl-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-top:22px;
+}
+.wl-item{
+  display:block;padding:22px 22px 20px;border-radius:16px;color:inherit;
+  transition:background .2s;
+}
+.wl-item:hover{background:var(--gris-suave)}
+.wl-item h4{
+  font-family:"Raleway",sans-serif;font-size:17px;font-weight:800;color:var(--azul);letter-spacing:.01em;
+}
+.wl-item p{font-size:13.5px;color:#3a3a3c;margin-top:8px;line-height:1.5}
+.wl-item span{display:inline-block;margin-top:12px;font-size:13.5px;font-weight:700;color:var(--celeste)}
+.wl-item:hover span{text-decoration:underline}
+
+.banda-partner{
+  margin-top:70px;background:linear-gradient(100deg,var(--azul) 0%,var(--azul-osc) 100%);
+  border-radius:28px;padding:56px 56px;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;
+}
+.banda-partner h3{font-size:clamp(22px,2.6vw,32px);font-weight:700;letter-spacing:-.01em}
+.banda-partner h3 span{color:var(--amarillo)}
+.banda-partner p{margin-top:10px;opacity:.85;max-width:620px;font-size:16px}
+
+/* ---------- Green energy / FV ---------- */
+.full-bleed{position:relative;width:100%;height:78vh;min-height:460px;overflow:hidden}
+.full-bleed img{width:100%;height:100%;object-fit:cover}
+.full-bleed .velo{
+  position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.05) 55%);
+  display:flex;align-items:flex-end;
+}
+.full-bleed .velo .contenedor{padding-bottom:64px;color:#fff;width:100%}
+.full-bleed h2{font-size:clamp(30px,4vw,52px);font-weight:800;letter-spacing:-.02em}
+.full-bleed p{font-size:clamp(16px,2vw,21px);margin-top:12px;max-width:640px;opacity:.92}
+
+/* ---------- Alianza Schneider (EcoXpert) — verde y blanco ---------- */
+.sch{background:#fff;color:var(--tinta);border-top:4px solid var(--verde-sch)}
+:root{--verde-sch:#3DCD58;--verde-sch-osc:#1B8A34;--verde-sch-suave:#F0FAF2}
+.sch .etiqueta{color:var(--verde-sch-osc)}
+.sch .titulo{color:var(--tinta)}
+.sch .subtitulo{color:var(--gris)}
+.sch .linea-amarilla{background:var(--verde-sch)}
+.logos-alianza{
+  display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap;margin-top:36px;
+}
+.logos-alianza img{height:64px;width:auto;object-fit:contain}
+.logos-alianza .sep{width:1px;height:44px;background:#e2e8e3}
+.sch-dos{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;margin-top:64px}
+@media(max-width:900px){.sch-dos{grid-template-columns:1fr;gap:32px}}
+.sch-dos img{width:100%;height:440px;object-fit:cover;border-radius:24px}
+.sch-dos h3{font-size:clamp(22px,2.6vw,30px);font-weight:800;margin-bottom:14px}
+.sch-dos p{font-size:15.5px;color:#3a3a3c;margin-bottom:14px}
+.sch-dos strong{color:var(--verde-sch-osc)}
+.sch-verbos{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+@media(max-width:800px){.sch-verbos{grid-template-columns:repeat(2,1fr)}}
+.sch-verbo{
+  background:var(--verde-sch-suave);border:1px solid #DDF2E1;
+  border-radius:16px;padding:22px 18px;text-align:center;
+}
+.sch-verbo b{font-family:"Raleway",sans-serif;font-size:17px;font-weight:800;color:var(--verde-sch-osc)}
+.sch-verbo span{display:block;font-size:12.5px;color:var(--gris);margin-top:6px}
+.sch-servicios{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;margin-top:56px}
+.sch-serv{
+  background:#fff;border:1px solid #e7eee8;border-radius:16px;padding:24px 24px;
+  border-left:3px solid var(--verde-sch);box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+.sch-serv h4{font-family:"Raleway",sans-serif;font-size:15.5px;font-weight:800;margin-bottom:6px}
+.sch-serv p{font-size:13.5px;color:var(--gris)}
+.sch-serv a{display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:var(--verde-sch-osc)}
+.sch-proyectos-titulo{
+  text-align:center;margin-top:70px;
+}
+.sch-proyectos-titulo h3{font-size:clamp(20px,2.4vw,28px);font-weight:800}
+.sch-proyectos-titulo p{color:var(--gris);font-size:14.5px;margin-top:6px}
+.sch-proyectos{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:32px}
+@media(max-width:860px){.sch-proyectos{grid-template-columns:1fr}}
+.sch-proy{
+  background:#fff;border:1px solid #e7eee8;border-radius:20px;overflow:hidden;color:var(--tinta);
+  display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(0,0,0,.05);
+  transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1);
+}
+.sch-proy:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.09)}
+.sch-proy img{width:100%;height:210px;object-fit:cover}
+.sch-proy-cuerpo{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
+.sch-proy .sp-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.sch-proy .sp-cliente{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gris)}
+.sch-proy .sp-estado{font-size:11px;font-weight:800;padding:4px 12px;border-radius:980px;letter-spacing:.05em}
+.sch-proy .sp-estado.entregado{background:#E7F6E9;color:#1E7B34}
+.sch-proy .sp-estado.desarrollo{background:#FDF7DC;color:#8a6d00}
+.sch-proy h4{font-family:"Raleway",sans-serif;font-size:18px;font-weight:800;line-height:1.25;margin-bottom:8px}
+.sch-proy p{font-size:13.5px;color:#3a3a3c}
+.sch-proy .sp-tecs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.sch-proy .sp-tec{
+  font-size:11.5px;font-weight:700;color:var(--verde-sch-osc);background:var(--verde-sch-suave);
+  padding:4px 12px;border-radius:980px;
+}
+.sch-cierre{
+  margin-top:56px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;
+  background:linear-gradient(100deg,var(--verde-sch-osc) 0%, #27A845 100%);
+  border-radius:20px;padding:32px 36px;color:#fff;
+}
+.sch-cierre h3{font-size:clamp(19px,2.2vw,25px);font-weight:800}
+.sch-cierre p{color:rgba(255,255,255,.85);font-size:14.5px;margin-top:6px;max-width:560px}
+
+/* ---------- Microredes Schneider ---------- */
+.mg-beneficios{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:64px}
+@media(max-width:900px){.mg-beneficios{grid-template-columns:1fr}}
+.mg-card{
+  background:var(--gris-suave);border-radius:20px;padding:36px 32px;border-top:4px solid var(--celeste);
+}
+.mg-card:nth-child(2){border-top-color:var(--amarillo)}
+.mg-card:nth-child(3){border-top-color:var(--azul)}
+.mg-card h3{font-size:19px;font-weight:700;margin-bottom:10px}
+.mg-card p{font-size:14.5px;color:#3a3a3c}
+.mg-card .mg-como{margin-top:14px;font-size:13px;color:var(--gris)}
+.mg-card .mg-como strong{color:var(--azul)}
+.mg-arq{
+  margin-top:80px;background:var(--azul-osc);border-radius:28px;padding:52px 52px 44px;color:#fff;
+}
+@media(max-width:640px){.mg-arq{padding:32px 24px}}
+.mg-arq h3{font-size:clamp(22px,2.6vw,30px);font-weight:700;text-align:center}
+.mg-arq .mg-sub{text-align:center;opacity:.8;font-size:15px;margin-top:8px}
+.mg-niveles{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
+@media(max-width:800px){.mg-niveles{grid-template-columns:1fr}}
+.mg-nivel{background:rgba(255,255,255,.07);border-radius:18px;padding:28px 28px}
+.mg-nivel .mg-tag{
+  display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--amarillo);color:var(--azul-osc);padding:4px 12px;border-radius:980px;margin-bottom:12px;
+}
+.mg-nivel h4{font-family:"Raleway",sans-serif;font-size:19px;font-weight:800}
+.mg-nivel p{font-size:14px;opacity:.85;margin-top:8px}
+.mg-nivel li{font-size:13.5px;opacity:.9;padding:4px 0 4px 18px;position:relative}
+.mg-nivel li::before{content:"";position:absolute;left:0;top:11px;width:7px;height:7px;border-radius:50%;background:var(--celeste)}
+.mg-nivel ul{margin-top:12px}
+.mg-ders{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+.mg-der{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:980px;
+  padding:8px 18px;font-size:13.5px;
+}
+.mg-conector{text-align:center;margin-top:22px;font-size:12.5px;opacity:.6;letter-spacing:.06em}
+.mg-bess{
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:80px;
+}
+@media(max-width:900px){.mg-bess{grid-template-columns:1fr;gap:30px}}
+.mg-bess img{width:100%;height:420px;object-fit:cover;border-radius:24px}
+.mg-bess h3{font-size:clamp(22px,2.6vw,30px);font-weight:700;margin-bottom:16px}
+.mg-bess li{font-size:15px;color:#3a3a3c;padding:6px 0 6px 28px;position:relative}
+.mg-bess li::before{content:"";position:absolute;left:0;top:13px;width:11px;height:3px;border-radius:2px;background:var(--amarillo)}
+.mg-ciclo{margin-top:80px}
+.mg-ciclo h3{text-align:center;font-size:clamp(22px,2.6vw,30px);font-weight:700}
+.mg-pasos{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:36px}
+@media(max-width:960px){.mg-pasos{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.mg-pasos{grid-template-columns:1fr}}
+.mg-paso{background:var(--gris-suave);border-radius:16px;padding:24px 20px;position:relative}
+.mg-paso .n{
+  width:30px;height:30px;border-radius:50%;background:var(--azul);color:var(--amarillo);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;margin-bottom:12px;
+  font-variant-numeric:tabular-nums;
+}
+.mg-paso h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.mg-paso p{font-size:13px;color:var(--gris)}
+
+/* ---------- Testimonios ---------- */
+.testimonios{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:64px}
+@media(max-width:800px){.testimonios{grid-template-columns:1fr}}
+.testimonio{
+  background:var(--gris-suave);border-radius:24px;padding:44px 40px;position:relative;
+}
+.testimonio::before{
+  content:"\201C";position:absolute;top:18px;left:28px;font-size:80px;color:var(--amarillo);
+  font-family:Georgia,serif;line-height:1;
+}
+.testimonio p{font-size:17px;color:#3a3a3c;margin-top:30px;font-style:italic}
+.testimonio .autor{margin-top:20px;font-weight:700;color:var(--azul);font-style:normal}
+
+/* ---------- Franja de clientes ---------- */
+.clientes-strip{
+  margin-top:70px;padding-top:50px;border-top:1px solid #e8ebf1;
+}
+.clientes-strip .cs-titulo{
+  text-align:center;font-size:13px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gris);margin-bottom:34px;
+}
+.clientes-logos{
+  display:flex;flex-wrap:wrap;gap:40px 56px;align-items:center;justify-content:center;
+}
+.clientes-logos img{
+  height:52px;width:auto;max-width:160px;object-fit:contain;
+  mix-blend-mode:multiply;
+  filter:grayscale(1);opacity:.55;transition:filter .3s, opacity .3s;
+}
+.clientes-logos img:hover{filter:none;opacity:1}
+
+/* ---------- Filtros de casos de éxito ---------- */
+.filtros-casos{
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:44px;
+}
+.filtros-casos button{
+  border:1.5px solid #d8dce4;background:#fff;color:var(--gris);
+  padding:8px 18px;border-radius:980px;font-size:13.5px;font-weight:600;
+  cursor:pointer;font-family:inherit;transition:all .2s;
+}
+.filtros-casos button:hover{border-color:var(--celeste);color:var(--azul)}
+.filtros-casos button.activo{background:var(--azul);border-color:var(--azul);color:#fff}
+.caso.oculto{display:none}
+
+/* ---------- Noticias del sector ---------- */
+.noticias-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:26px;margin-top:44px;
+}
+.noticia{
+  background:#fff;border:1px solid #e8ebf1;border-radius:20px;padding:30px 28px;
+  display:flex;flex-direction:column;
+  transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1);
+}
+.noticia:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.08)}
+.noticia .n-meta{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:14px}
+.noticia .n-cat{
+  font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--celeste);background:#EAF6FC;padding:4px 12px;border-radius:980px;
+}
+.noticia .n-cat.cat-ec{color:#1E7B34;background:#E7F6E9}
+.noticia .n-cat.cat-eq{color:var(--azul);background:#EFF4FC}
+.noticia .n-fecha{font-size:12px;color:var(--gris);white-space:nowrap}
+.noticia h3{font-size:17.5px;font-weight:700;line-height:1.3;margin-bottom:10px}
+.noticia .n-resumen{font-size:14px;color:#3a3a3c;margin-bottom:14px}
+.noticia .n-angulo{
+  background:#FDF7DC;border-left:3px solid var(--amarillo);border-radius:0 10px 10px 0;
+  padding:12px 14px;font-size:13px;color:#3a3a3c;margin-bottom:16px;
+}
+.noticia .n-angulo b{color:var(--azul)}
+.noticia .n-fuente{margin-top:auto;font-size:13.5px;font-weight:600}
+.noticias-nota{
+  text-align:center;font-size:12.5px;color:var(--gris);margin-top:26px;
+}
+
+/* ---------- Contacto ---------- */
+.contacto{background:var(--azul-osc);color:#fff}
+.contacto .titulo{color:#fff}
+.contacto .subtitulo{color:rgba(255,255,255,.75)}
+.contacto-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px;margin-top:56px}
+.contacto-item{
+  background:rgba(255,255,255,.07);border-radius:20px;padding:32px 30px;text-align:center;
+}
+.contacto-item .ic{margin-bottom:12px;color:var(--amarillo);display:flex;justify-content:center}
+.contacto-item .ic .ic-svg{width:30px;height:30px}
+.contacto-item h3{font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--amarillo);margin-bottom:8px}
+.contacto-item p, .contacto-item a{font-size:17px;color:#fff}
+
+/* ---------- Ficha del asesor (uso interno) ---------- */
+.ficha{background:var(--gris-suave);border-top:3px dashed #c9c9ce}
+.ficha .aviso{
+  display:inline-block;background:var(--amarillo);color:var(--azul-osc);
+  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:5px 14px;border-radius:980px;margin-bottom:16px;
+}
+.ficha-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:56px}
+@media(max-width:960px){.ficha-grid{grid-template-columns:1fr}}
+.panel{
+  background:#fff;border-radius:20px;padding:32px 30px;box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+.panel h3{
+  font-size:17px;font-weight:700;margin-bottom:18px;color:var(--azul);
+  display:flex;align-items:center;gap:10px;
+}
+.panel h3 .badge{
+  width:30px;height:30px;border-radius:9px;background:var(--azul);color:var(--amarillo);
+  display:inline-flex;align-items:center;justify-content:center;font-size:15px;flex:none;
+}
+.campo{margin-bottom:14px}
+.campo label{display:block;font-size:12.5px;font-weight:600;color:var(--gris);margin-bottom:5px;letter-spacing:.02em}
+.campo input,.campo select,.campo textarea{
+  width:100%;padding:10px 13px;border:1.5px solid #dcdce1;border-radius:10px;
+  font-size:14.5px;font-family:inherit;background:#fff;color:var(--tinta);
+}
+.campo input:focus,.campo select:focus,.campo textarea:focus{
+  outline:none;border-color:var(--celeste);box-shadow:0 0 0 3px rgba(23,162,221,.15);
+}
+.campo textarea{resize:vertical;min-height:84px}
+.fila-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.fila-2{grid-template-columns:1fr}}
+.check{
+  display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:10px;
+  font-size:14px;color:#3a3a3c;cursor:pointer;transition:background .15s;
+}
+.check:hover{background:var(--gris-suave)}
+.check input{width:17px;height:17px;margin-top:2px;accent-color:var(--azul);flex:none;cursor:pointer}
+.icp-score{
+  margin-top:16px;border-radius:14px;padding:18px 20px;text-align:center;
+  font-weight:700;font-size:15px;background:var(--gris-suave);color:var(--gris);
+  transition:background .3s,color .3s;
+}
+.icp-score.a{background:#E7F6E9;color:#1E7B34}
+.icp-score.b{background:#FDF7DC;color:#8a6d00}
+.icp-score.c{background:#FDEBEA;color:#B3261E}
+.ficha-acciones{
+  margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+}
+.ficha-acciones .nota-guardado{font-size:13.5px;color:#1E7B34;font-weight:600;display:none}
+.fichas-guardadas{margin-top:36px}
+.fichas-guardadas h3{font-size:16px;font-weight:700;color:var(--azul);margin-bottom:12px}
+.embudo{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.embudo .em-item{
+  display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;
+  padding:10px 18px;box-shadow:0 2px 8px rgba(0,0,0,.05);font-size:13.5px;color:var(--gris);
+}
+.embudo .em-item b{font-size:20px;font-family:"Raleway",sans-serif;font-variant-numeric:tabular-nums}
+.embudo .em-a b{color:#1E7B34}
+.embudo .em-b b{color:#8a6d00}
+.embudo .em-c b{color:#B3261E}
+.embudo .em-total b{color:var(--azul)}
+.fichas-guardadas table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.fichas-guardadas th{background:var(--azul);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;text-align:left}
+.fichas-guardadas td{padding:10px 14px;font-size:14px;border-top:1px solid #f0f0f2;color:#3a3a3c}
+.fichas-guardadas .accion{color:var(--celeste);cursor:pointer;font-weight:600;margin-right:12px}
+.fichas-guardadas .accion.borrar{color:#B3261E}
+.pill-score{padding:3px 10px;border-radius:980px;font-size:12px;font-weight:700}
+.pill-score.a{background:#E7F6E9;color:#1E7B34}
+.pill-score.b{background:#FDF7DC;color:#8a6d00}
+.pill-score.c{background:#FDEBEA;color:#B3261E}
+
+/* ---------- Ficha de caso de éxito (modal) ---------- */
+.caso{cursor:pointer}
+.caso .ver-ficha{
+  margin-top:16px;font-size:14px;font-weight:700;color:var(--celeste);
+}
+.caso:hover .ver-ficha{text-decoration:underline}
+.nav-ficha{
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--amarillo);border-radius:980px;
+  height:32px;padding:0 18px;line-height:1;
+  font-weight:700;color:var(--azul) !important;
+  transition:background .3s ease, transform .3s ease;
+}
+.nav-ficha:hover{background:var(--amarillo);transform:translateY(-1px)}
+.nav-interno{
+  color:#c3c9d4 !important;font-size:15px;opacity:.5 !important;padding:4px 6px;
+}
+.nav-interno:hover{opacity:1 !important;color:var(--azul) !important}
+.modal-caso{
+  position:fixed;inset:0;z-index:200;display:none;
+  background:rgba(10,25,60,.55);backdrop-filter:blur(4px);
+  align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 18px;
+}
+.modal-caso.abierto{display:flex}
+.mc-tarjeta{
+  background:#fff;border-radius:24px;max-width:860px;width:100%;overflow:hidden;
+  box-shadow:0 24px 80px rgba(0,0,0,.35);animation:mc-entrar .3s ease;
+}
+@keyframes mc-entrar{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.mc-galeria{position:relative;background:#0e2a56}
+.mc-foto{width:100%;height:400px;object-fit:cover;display:block}
+@media(max-width:640px){.mc-foto{height:250px}}
+.mc-cerrar{
+  position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.92);border:none;font-size:19px;cursor:pointer;color:var(--tinta);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.25);
+}
+.mc-cerrar:hover{background:var(--amarillo)}
+.mc-thumbs{
+  position:absolute;left:0;right:0;bottom:0;display:flex;gap:8px;padding:12px 16px;
+  background:linear-gradient(to top, rgba(10,25,60,.75), transparent);
+}
+.mc-thumbs img{
+  width:64px;height:44px;object-fit:cover;border-radius:8px;cursor:pointer;
+  border:2px solid transparent;opacity:.75;transition:opacity .2s, border-color .2s;
+}
+.mc-thumbs img.activa{border-color:var(--amarillo);opacity:1}
+.mc-thumbs img:hover{opacity:1}
+.mc-cuerpo{padding:38px 44px 44px}
+@media(max-width:640px){.mc-cuerpo{padding:28px 24px 32px}}
+.mc-sector{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--celeste)}
+.mc-cliente{font-family:"Raleway",sans-serif;font-size:26px;font-weight:800;margin-top:6px;letter-spacing:-.01em}
+.mc-titulo{font-size:17px;font-weight:600;color:var(--azul);margin-top:6px;margin-bottom:26px}
+.mc-bloque{margin-bottom:24px}
+.mc-bloque .acto{
+  font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--azul);margin-bottom:8px;display:flex;align-items:center;gap:10px;
+}
+.mc-bloque .acto::after{content:"";flex:1;height:1px;background:#e8e8ec}
+.mc-bloque p{font-size:15.5px;color:#3a3a3c}
+.mc-bloque li{font-size:15px;color:#3a3a3c;padding:5px 0 5px 22px;position:relative}
+.mc-bloque li::before{
+  content:"";position:absolute;left:0;top:13px;width:9px;height:9px;border-radius:50%;background:var(--amarillo);
+}
+.mc-beneficio{
+  background:#FDF7DC;border-left:4px solid var(--amarillo);border-radius:0 14px 14px 0;
+  padding:18px 20px;font-size:15.5px;color:#3a3a3c;
+}
+.mc-acciones{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.mc-marca{display:none}
+/* Ficha técnica de producto (comparte estilos mc-*) */
+.mp-sin-foto .mc-galeria{display:none}
+.mp-nota{
+  background:#FDF7DC;border-left:4px solid var(--amarillo);border-radius:0 14px 14px 0;
+  padding:16px 18px;font-size:15px;color:#3a3a3c;margin-bottom:24px;
+}
+#modal-producto .mc-foto{object-fit:contain;background:#fff;height:340px;padding:20px}
+#modal-producto .mc-cerrar{background:var(--gris-suave)}
+#modal-producto.mp-sin-foto .mc-cuerpo{padding-top:46px}
+#modal-producto.mp-sin-foto .mp-cerrar-alt{display:flex}
+.mp-cerrar-alt{display:none;position:absolute;top:16px;right:16px}
+
+/* ---------- Footer ---------- */
+footer{background:#0e2a56;color:rgba(255,255,255,.65);padding:36px 24px;text-align:center;font-size:13.5px}
+footer strong{color:#fff}
+
+/* ---------- Animación al hacer scroll (suave y sutil) ---------- */
+.revelar{
+  opacity:0;transform:translateY(14px);
+  transition:opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
+  transition-delay:var(--rev-delay, 0s);
+}
+.revelar.visible{opacity:1;transform:none}
+
+/* ---------- Impresión ---------- */
+/* Por defecto se imprime la ficha del asesor; si hay una ficha de
+   caso de éxito abierta, se imprime únicamente esa ficha. */
+@media print{
+  body > :not(.ficha){display:none !important}
+  .ficha{background:#fff;border:none;padding:0}
+  .ficha-acciones,.fichas-guardadas{display:none}
+  body.imprimir-caso > :not(.modal-caso){display:none !important}
+  body.imprimir-caso .modal-caso:not(.abierto){display:none !important}
+  body.imprimir-caso .modal-caso.abierto{
+    display:block !important;position:static;background:#fff;padding:0;backdrop-filter:none;
+  }
+  body.imprimir-caso .mc-tarjeta{box-shadow:none;border-radius:0;max-width:100%}
+  body.imprimir-caso .mc-cerrar,
+  body.imprimir-caso .mc-thumbs,
+  body.imprimir-caso .mc-acciones{display:none !important}
+  body.imprimir-caso .mc-foto{height:340px}
+  body.imprimir-caso .mc-marca{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 44px;border-bottom:2px solid var(--amarillo);
+  }
+  body.imprimir-caso .mc-marca img{height:34px}
+  body.imprimir-caso .mc-marca span{font-size:11px;color:var(--gris)}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAVEGACIÓN ================= -->
+<nav>
+  <div class="nav-inner">
+    <a href="#inicio"><img src="img/logo/logo-horizontal.png" alt="INPROCONFI S.A."></a>
+    <div class="nav-links">
+      <a href="#grupo">El Grupo</a>
+      <a href="#sps">SPS</a>
+      <a href="#razones">Ventajas</a>
+      <a href="#casos">Casos</a>
+      <a href="#unidades">Servicios</a>
+      <a href="#schneider">Schneider</a>
+      <a href="#productos">Productos</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#empresa">Empresa</a>
+      <a href="#ficha" class="nav-ficha">Ficha</a>
+      <a href="#contacto" class="nav-cta">Contáctenos</a>
+      <a href="benchmark.html" class="nav-interno" title="Benchmark — uso interno">◈</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="inicio">
+  <h1>Energía confiable para<br><span>infraestructura crítica</span></h1>
+  <p>Diagnóstico con datos reales, protección y automatización, generación industrial y entregas con pruebas en mano. La continuidad eléctrica de su operación, completa y con un solo aliado.</p>
+  <div class="acciones">
+    <a class="btn btn-azul" href="#contacto">Solicite una evaluación técnica</a>
+    <a class="btn btn-borde" href="#casos">Vea lo que hemos logrado</a>
+  </div>
+</header>
+<div class="hero-collage">
+  <img src="img/empresa/historia-equipo-campo.jpg" alt="Equipo INPROCONFI trabajando en subestación de 69 kV">
+  <img src="img/proyectos/montaje-transformador-grua.jpg" alt="Montaje de transformador con grúa">
+  <img src="img/servicios/pruebas-subestacion-campo.jpg" alt="Pruebas eléctricas en subestación">
+  <img src="img/generacion/sala-generadores.jpg" alt="Sala de generadores industriales">
+  <img src="img/proyectos/celdas-schneider-mt.jpg" alt="Celdas de media tensión Schneider">
+</div>
+
+<!-- ================= EL GRUPO (holding) ================= -->
+<section id="grupo">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta">Grupo Empresarial</span>
+      <h2 class="titulo">Tres empresas, una sola responsabilidad</h2>
+      <p class="subtitulo">Mientras el mercado se especializa en fragmentos —solo pruebas, solo obra, solo generadores— el grupo INPROCONFI integra todas las capacidades que su operación necesita, con un mismo estándar de calidad y un solo responsable que da la cara por todo el proyecto.</p>
+      <div class="linea-amarilla"></div>
+    </div>
+
+    <div class="holding-grid">
+      <div class="empresa-card revelar">
+        <div class="empresa-logo"><img src="img/logo/logo.png" alt="INPROCONFI S.A."></div>
+        <h3>INPROCONFI S.A.</h3>
+        <div class="empresa-rol">Ingeniería, Protección &amp; Generación</div>
+        <p>Ingeniería de detalle, protecciones y automatización de potencia (partner EcoXpert de Schneider Electric), SCADA, generación industrial y sincronismo. La cabeza técnica del grupo.</p>
+      </div>
+      <div class="empresa-card revelar">
+        <div class="empresa-logo"><img src="img/logo/logo-ems.png" alt="EMS Testing"></div>
+        <h3>EMS TESTING</h3>
+        <div class="empresa-rol">Especialistas en Subestaciones</div>
+        <p>Más de una década como pioneros en pruebas eléctricas para subestaciones: diagnóstico de transformadores y cables MV/HV, análisis de aceite dieléctrico en laboratorio acreditado ISO 17025, sistemas DC y mantenimiento de equipo primario. <strong>Value Added Partner oficial de Megger en Ecuador</strong> y asistente técnico autorizado de la línea T&amp;D de WEG.</p>
+        <a href="https://emstesting.com.ec/" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px;font-size:14px;font-weight:600">emstesting.com.ec →</a>
+      </div>
+      <div class="empresa-card revelar">
+        <div class="empresa-logo"><img src="img/logo/logo-cceyma.png" alt="CCEYMA S.A."></div>
+        <h3>CCEYMA S.A.</h3>
+        <div class="empresa-rol">Obra Civil &amp; Montajes Electromecánicos</div>
+        <p>Consorcio de obras civiles, eléctricas y mecánicas para infraestructura de potencia: fundaciones, montajes y construcción, habilitado para contratación con entidades del Estado.</p>
+      </div>
+    </div>
+
+    <!-- Matriz de diferenciación -->
+    <div class="revelar" style="margin-top:80px">
+      <h3 class="centrado" style="font-size:clamp(22px,2.6vw,30px);font-weight:700">Lo que otros entregan por partes,<br>nosotros lo entregamos completo</h3>
+      <div class="matriz-scroll">
+        <table class="matriz">
+          <thead>
+            <tr>
+              <th>Capacidad</th>
+              <th>Empresas de pruebas</th>
+              <th>Contratistas de obra</th>
+              <th>Proveedores de generadores</th>
+              <th>Integradores de automatización</th>
+              <th class="col-grupo">Grupo INPROCONFI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Diagnóstico comprobado con mediciones y pruebas certificadas</td><td>●</td><td>—</td><td>—</td><td>—</td><td class="col-grupo">●</td></tr>
+            <tr><td>Protecciones, automatización y SCADA</td><td>◐</td><td>—</td><td>—</td><td>●</td><td class="col-grupo">●</td></tr>
+            <tr><td>Generación industrial y sincronismo</td><td>—</td><td>—</td><td>●</td><td>—</td><td class="col-grupo">●</td></tr>
+            <tr><td>Obra civil y montaje electromecánico</td><td>—</td><td>●</td><td>—</td><td>—</td><td class="col-grupo">●</td></tr>
+            <tr><td>Continuidad eléctrica crítica 24/7</td><td>—</td><td>—</td><td>◐</td><td>—</td><td class="col-grupo">●</td></tr>
+            <tr><td>Entregas con actas, protocolos y registros de cada trabajo</td><td>◐</td><td>◐</td><td>—</td><td>◐</td><td class="col-grupo">●</td></tr>
+            <tr><td>Un solo responsable de punta a punta</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="col-grupo">●</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="leyenda-matriz">● Cobertura completa &nbsp;·&nbsp; ◐ Cobertura parcial &nbsp;·&nbsp; — Fuera de su alcance habitual</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROYECTO INSIGNIA: SPS ================= -->
+<section id="sps" class="sps">
+  <div class="sps-banner">
+    <img src="img/sps/coca-codo-sinclair-presa.jpg" alt="Central hidroeléctrica Coca Codo Sinclair, integrada al SPS del Ecuador">
+    <div class="sps-velo">
+      <div class="contenedor">
+        <span class="etiqueta" style="color:var(--amarillo)">Proyecto Insignia</span>
+        <h2>Protegemos el sistema eléctrico<br>de todo un país</h2>
+        <p>El Sistema de Protección Sistémica (SPS) del Ecuador detecta contingencias críticas en el Sistema Nacional Interconectado y ejecuta acciones remediales en menos de 200 milisegundos para evitar apagones en cascada. INPROCONFI es la empresa que lo instala y lo pone en servicio.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contenedor">
+    <div class="sps-stats revelar">
+      <div><div class="num">&lt;200 ms</div><div class="txt">Respuesta automática del SPS ante contingencias críticas del SNI</div></div>
+      <div><div class="num">3 etapas</div><div class="txt">Fase II (2019) · SPS3 Etapa 1 (operativa desde 2025) · SPS3 Etapa 2, en ejecución actualmente</div></div>
+      <div><div class="num">7</div><div class="txt">Subestaciones integradas en la Etapa 1 del SPS3: Ambato, Totoras, Alluriquín, Pascuales, Durán, Dos Cerritos y Milagro</div></div>
+      <div><div class="num">1.500 MW</div><div class="txt">Coca Codo Sinclair, la mayor central del país, integrada al esquema en la Fase II</div></div>
+    </div>
+
+    <div class="dos-col" style="margin-top:80px">
+      <div class="revelar">
+        <h3>Ingeniería de máxima responsabilidad</h3>
+        <p>Fuimos el contratista adjudicado por CELEC EP – Transelectric para la instalación y puesta en servicio de la <strong>Fase II del SPS</strong> (2019), la ampliación que incorporó al esquema el sistema de transmisión de 500 kV y las centrales <strong>Coca Codo Sinclair (1.500 MW)</strong> y <strong>Minas San Francisco</strong>, con integración a los centros de control de CENACE y Transelectric.</p>
+        <p>En la <strong>Etapa 1 del SPS3</strong> volvimos a ser adjudicados — esta vez para la adquisición y puesta en servicio de los equipos: pruebas de aceptación en fábrica, instalación e integración en <strong>siete subestaciones del SNI</strong> y habilitación de disparos, con el sistema integralmente operativo desde enero de 2025. <strong>Y hoy seguimos en el corazón del sistema: desarrollamos actualmente la Etapa 2 del SPS3.</strong></p>
+        <p>Cada etapa se ha desarrollado conforme a los cronogramas y requerimientos del cliente, trabajando en ventanas coordinadas sin afectar la operación en vivo del sistema. Somos una de las pocas empresas nacionales con experiencia comprobada en esquemas de protección de área amplia.</p>
+      </div>
+      <img class="revelar" src="img/sps/coca-codo-casa-maquinas.jpg" alt="Casa de máquinas de Coca Codo Sinclair">
+    </div>
+
+    <div class="centrado revelar" style="margin-top:100px">
+      <h3 style="font-size:clamp(24px,3vw,36px);font-weight:800">La misma ingeniería que protege al país,<br>aplicada a su industria</h3>
+      <p class="subtitulo" style="margin-left:auto;margin-right:auto">Cada unidad de negocio del grupo hereda los estándares, protocolos y disciplina del SPS.</p>
+      <div class="linea-amarilla"></div>
+    </div>
+    <div class="sps-aplicaciones">
+      <div class="aplicacion revelar">
+        <div class="ap-unidad">Servicios y Mantenimiento</div>
+        <p>Los mismos protocolos de pruebas y comisionado que exige el Sistema Nacional Interconectado, aplicados al mantenimiento de <strong>su</strong> subestación: cada intervención con procedimiento, registro y evidencia.</p>
+      </div>
+      <div class="aplicacion revelar">
+        <div class="ap-unidad">Proyectos Industriales</div>
+        <p>Ejecución multi-sitio con ventanas de trabajo planificadas: en el SPS aprendimos a intervenir instalaciones críticas <strong>sin detener la operación</strong> — la misma disciplina llega a su planta.</p>
+      </div>
+      <div class="aplicacion revelar">
+        <div class="ap-unidad">Infraestructura — Utilities</div>
+        <p>Tableros de protección y control, parametrización de relés y pruebas de inyección secundaria: la especialidad que perfeccionamos en el SPS es el corazón de nuestros proyectos con distribuidoras y entidades del Estado.</p>
+      </div>
+      <div class="aplicacion revelar">
+        <div class="ap-unidad">Generación Industrial</div>
+        <p>Las lógicas de deslastre de carga y sincronismo del SPS, a escala de su planta: prioridad de cargas críticas, transición cerrada y respaldo que actúa antes de que el proceso lo sienta.</p>
+      </div>
+      <div class="aplicacion revelar">
+        <div class="ap-unidad">Automatización y SCADA</div>
+        <p>Comunicaciones en tiempo real, mediciones sincronizadas (PMU) y ciberseguridad industrial: la tecnología de protección de área amplia aplicada a microredes y sistemas de control industriales.</p>
+      </div>
+      <div class="aplicacion revelar aplicacion-foto">
+        <img src="img/sps/hidroelectrica-agoyan.jpg" alt="Central hidroeléctrica Agoyán en operación">
+        <div class="ap-pie">Infraestructura hidroeléctrica del SNI protegida por el SPS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POR QUÉ NOS PREFIEREN ================= -->
+<section id="razones" class="fondo-suave">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta">Nuestra Diferencia</span>
+      <h2 class="titulo">¿Por qué nos prefieren?</h2>
+      <p class="subtitulo">Cinco compromisos sostienen cada proyecto: su operación no se detiene, su gente trabaja segura, sus auditorías pasan sin sorpresas, todo queda por escrito y lo ejecuta gente que ya lo hizo antes.</p>
+      <div class="linea-amarilla"></div>
+    </div>
+    <div class="razones">
+      <div class="razon revelar">
+        <div class="razon-foto"><img src="img/servicios/mantenimiento-subestacion-69kv.jpg" alt="Cuadrilla INPROCONFI en subestación de 69 kV"><div class="icono"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/><path d="M8.5 5.5a5 5 0 0 1 7 0"/></svg></div></div>
+        <div class="razon-cuerpo"><h3>Personal altamente calificado</h3><p>Equipo multidisciplinario de ingenieros formado en los proyectos de máxima responsabilidad del país, desde subestaciones de 69 kV hasta el sistema de transmisión de 500 kV.</p>
+        <div class="evidencia">Tres etapas del SPS del Ecuador confiadas por CELEC EP – Transelectric (la tercera, en ejecución)</div></div>
+      </div>
+      <div class="razon revelar">
+        <div class="razon-foto"><img src="img/servicios/pruebas-generadores.jpg" alt="Equipos de prueba eléctrica en campo"><div class="icono"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 1 1 8-8"/><path d="M12 12l4.5-3.5"/><path d="M12 4v2M4 12h2M6.3 6.3l1.4 1.4"/></svg></div></div>
+        <div class="razon-cuerpo"><h3>Equipos de medición certificados</h3><p>Instrumentos de última generación con certificación y calibración vigente, respaldados directamente por el fabricante líder en equipos de prueba eléctrica.</p>
+        <div class="evidencia">Value Added Partner oficial de Megger en Ecuador</div></div>
+      </div>
+      <div class="razon revelar">
+        <div class="razon-foto"><img src="img/servicios/analisis-aceite.jpg" alt="Análisis de aceite dieléctrico en laboratorio"><div class="icono"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/><path d="M9 12l2.2 2.2L15.5 9.5"/></svg></div></div>
+        <div class="razon-cuerpo"><h3>Cumplimiento normativo y calidad</h3><p>Conformidad con normativa IEC, IEEE e ISO. Cada resultado se sustenta en mediciones, no en apreciaciones — y usted recibe los números.</p>
+        <div class="evidencia">Análisis de aceite dieléctrico en laboratorio acreditado ISO 17025</div></div>
+      </div>
+      <div class="razon revelar">
+        <div class="razon-foto"><img src="img/servicios/termografia-subestacion.jpg" alt="Termografía de subestación eléctrica"><div class="icono"><svg class="ic-svg" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v3M14 3v3M10 18v3M14 18v3M3 10h3M3 14h3M18 10h3M18 14h3"/></svg></div></div>
+        <div class="razon-cuerpo"><h3>Innovación tecnológica</h3><p>Diagnóstico que ve lo que el ojo no puede: termografía, descargas parciales en línea, monitoreo de gases disueltos y análisis de datos sobre sus activos.</p>
+        <div class="evidencia">Monitoreo en línea DGA y descargas parciales con tecnología Megger</div></div>
+      </div>
+      <div class="razon revelar">
+        <div class="razon-foto"><img src="img/servicios/payback-inversion.jpg" alt="Gráfico de recuperación de la inversión: payback simple y descontado"><div class="icono"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M4 6v12h16"/><path d="M6 14l4-4 3 3 6-6"/><path d="M19 7h-4M19 7v4"/></svg></div></div>
+        <div class="razon-cuerpo"><h3>Optimización de costos</h3><p>Mantenimiento predictivo y preventivo que detecta el defecto antes de que sea una parada no programada: la falla que no ocurre es la que menos cuesta.</p>
+        <div class="evidencia">Nicovita: reducción significativa de pérdidas de producto y horas de trabajo</div></div>
+      </div>
+      <div class="razon revelar">
+        <div class="razon-foto"><img src="img/generacion/generadores-radiadores.jpg" alt="Generadores de respaldo industriales"><div class="icono"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></svg></div></div>
+        <div class="razon-cuerpo"><h3>Atención 24/7</h3><p>Respuesta rápida y eficaz ante cualquier contingencia, con acompañamiento en cada etapa — de la evaluación a la ejecución, cualquier día del año.</p>
+        <div class="evidencia">“La crisis de energía de 2024 pasó desapercibida” — Grupo Difare</div></div>
+      </div>
+      <div class="razon revelar">
+        <div class="razon-foto"><img src="img/proyectos/celdas-schneider-mt.jpg" alt="Celdas de media tensión Schneider Electric"><div class="icono"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 3l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 8.3l5-.7z"/></svg></div></div>
+        <div class="razon-cuerpo"><h3>Respaldo oficial de fabricantes</h3><p>No improvisamos con los equipos que instalamos: el grupo cuenta con certificaciones y autorizaciones directas de las marcas que integra.</p>
+        <div class="evidencia">EcoXpert Schneider Electric · VAP Megger · WEG T&amp;D · Woodward</div></div>
+      </div>
+      <div class="razon revelar">
+        <div class="razon-foto"><img src="img/proyectos/comisionado-tableros.jpg" alt="Comisionado de tableros con registro documental"><div class="icono"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M8 3.5h8a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2z"/><path d="M9.5 8h5M9.5 11.5h5M9.5 15h3"/></svg></div></div>
+        <div class="razon-cuerpo"><h3>Todo queda por escrito</h3><p>Protocolos, registros y actas de cada trabajo: usted sabe exactamente qué se hizo, cómo se probó y con qué resultado — y tiene los documentos para demostrarlo ante quien sea.</p>
+        <div class="evidencia">Cultura de proyecto heredada del SPS: cada etapa conforme al cronograma y los requerimientos del cliente</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASOS DE ÉXITO ================= -->
+<section id="casos">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta">Casos de Éxito</span>
+      <h2 class="titulo">Historias de lo bien que<br>hacemos las cosas</h2>
+      <p class="subtitulo">Cada proyecto cuenta la misma historia: un reto crítico, una solución de ingeniería y un cliente que hoy opera con tranquilidad.</p>
+      <div class="linea-amarilla"></div>
+    </div>
+    <div class="filtros-casos" id="filtros-casos" aria-label="Filtrar casos por sector">
+      <!-- Los filtros se generan automáticamente según los sectores de los casos -->
+    </div>
+    <div class="casos-grid" id="casos-grid">
+      <!-- Los casos se generan automáticamente desde datos/casos-exito.js -->
+    </div>
+  </div>
+</section>
+
+<!-- ================= EMPRESA ================= -->
+<section id="empresa" class="fondo-suave">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta">Nuestra Historia</span>
+      <h2 class="titulo">Desde 2014, construyendo confianza<br>proyecto a proyecto</h2>
+      <div class="linea-amarilla"></div>
+    </div>
+
+    <div class="dos-col">
+      <img class="revelar" src="img/empresa/subestacion-portico.jpg" alt="Pórtico de subestación construido por INPROCONFI">
+      <div class="revelar">
+        <h3>Trayectoria basada en la excelencia</h3>
+        <p>Desde 2014, nuestro equipo de ingenieros ha construido una trayectoria basada en la excelencia y los buenos resultados. Nos diferenciamos por nuestra honestidad, responsabilidad y lealtad, ofreciendo soluciones de alta calidad que generan valor real para nuestros clientes.</p>
+        <p>Nuestra experiencia se ha consolidado en proyectos de máxima responsabilidad a nivel país: desarrollamos la instalación y puesta en servicio de la expansión del <strong>Sistema de Protección Sistémica SPS – Fase II</strong>, y posteriormente la adquisición y puesta en servicio de equipos para la <strong>ampliación SPS3 – Etapa 1</strong>.</p>
+        <p>Nuestro compromiso va más allá del servicio: garantizamos eficiencia, seguridad y respeto por el medio ambiente en cada proyecto, con amplia experiencia en los sectores energético, petrolero, industrial y pesquero.</p>
+      </div>
+    </div>
+
+    <div class="mv-grid">
+      <div class="mv-card revelar">
+        <h3>Misión</h3>
+        <p>Desarrollamos y ejecutamos soluciones eléctricas para entornos industriales exigentes e infraestructura crítica, combinando ingeniería, puesta en servicio, mantenimiento y diagnóstico especializado. Trabajamos con estándares altos de seguridad, control de riesgos y cumplimiento, entregando resultados trazables que reducen fallas, protegen la continuidad operativa y optimizan el costo del ciclo de vida.</p>
+      </div>
+      <div class="mv-card revelar">
+        <h3>Visión</h3>
+        <p>Ser la empresa de referencia en Ecuador y un actor regional en servicios e ingeniería eléctrica para infraestructura crítica e industria, reconocidos por una experiencia técnica superior, soporte oportuno y soluciones confiables en subestaciones, media tensión, transformadores, automatización, protección y generación de respaldo. Creceremos con rentabilidad sostenida, impulsados por innovación aplicada, monitoreo, análisis de datos y herramientas digitales, y por un sistema de gestión robusto y certificable.</p>
+      </div>
+    </div>
+
+    <div class="cifras revelar">
+      <div><div class="num">10+</div><div class="txt">Años de trayectoria</div></div>
+      <div><div class="num">24/7</div><div class="txt">Soporte técnico especializado</div></div>
+      <div><div class="num">12 MVA</div><div class="txt">En sistemas de respaldo diseñados</div></div>
+      <div><div class="num">69 kV</div><div class="txt">Subestaciones llave en mano</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= UNIDADES DE NEGOCIO ================= -->
+<section id="unidades">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta">Unidades de Negocio</span>
+      <h2 class="titulo">Todo el ciclo de vida de su<br>infraestructura eléctrica</h2>
+      <div class="linea-amarilla"></div>
+    </div>
+
+    <!-- 01 Servicios y Mantenimiento -->
+    <div class="unidad">
+      <img class="revelar" src="img/servicios/pruebas-subestacion-campo.jpg" alt="Cuadrilla INPROCONFI ejecutando pruebas eléctricas en subestación">
+      <div class="texto revelar">
+        <div class="num-unidad">UNIDAD 01</div>
+        <h3>Servicios y Mantenimiento</h3>
+        <ul>
+          <li>Mantenimiento integral de subestaciones y switchgears</li>
+          <li>Pruebas eléctricas a equipos de subestación: interruptores, seccionadores, pararrayos y transformadores de instrumentos</li>
+          <li>Pruebas y diagnóstico avanzado de transformadores de potencia: DFR/FDS, Tan Delta, balance magnético y desmagnetización</li>
+          <li>Análisis de aceite dieléctrico en laboratorio acreditado ISO 17025</li>
+          <li>Pruebas de descargas parciales, VLF y Tangente Delta en cables de media y alta tensión</li>
+          <li>Termografía, calidad de energía y calidad de gases SF6</li>
+          <li>Construcción y mantenimiento de mallas de puesta a tierra</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 02 Proyectos Industriales -->
+    <div class="unidad invertida">
+      <div class="texto revelar">
+        <div class="num-unidad">UNIDAD 02</div>
+        <h3>Proyectos Industriales</h3>
+        <ul>
+          <li>Montajes electromecánicos</li>
+          <li>Suministro e instalación de equipos primarios de subestaciones</li>
+          <li>Suministro e instalación de celdas de media tensión</li>
+          <li>Estudios eléctricos y desarrollo de ingeniería básica y de detalle</li>
+          <li>Implementación de sistemas SCADA</li>
+          <li>Montaje, secado en campo y diagnóstico integral de transformadores</li>
+          <li>Comisionado y puesta en marcha de proyectos en baja, media y alta tensión</li>
+        </ul>
+      </div>
+      <img class="revelar" src="img/proyectos/planta-autogeneracion-exterior.jpg" alt="Planta de autogeneración con sala de generadores, BESS y edificio de control">
+    </div>
+
+    <!-- 03 Infraestructura Utilities -->
+    <div class="unidad">
+      <img class="revelar" src="img/proyectos/pruebas-reles-inyeccion.jpg" alt="Pruebas de relés de protección por inyección secundaria">
+      <div class="texto revelar">
+        <div class="num-unidad">UNIDAD 03</div>
+        <h3>Proyectos de Infraestructura — Utilities</h3>
+        <ul>
+          <li>Ingeniería de detalle para entidades del Estado</li>
+          <li>Fabricación e instalación de tableros de protección y control</li>
+          <li>Suministro y configuración de relés de protección</li>
+          <li>Pruebas de relés y medidores por inyección secundaria</li>
+          <li>Estudios de cortocircuito y coordinación de protecciones</li>
+          <li>Comisionado y puesta en marcha de proyectos</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 04 Generación Industrial -->
+    <div class="unidad invertida">
+      <div class="texto revelar">
+        <div class="num-unidad">UNIDAD 04</div>
+        <h3>Generación Industrial</h3>
+        <ul>
+          <li>Venta de generadores eléctricos y renting de equipos de alta potencia</li>
+          <li>Instalación de generadores y transferencias automáticas</li>
+          <li>Sistemas de sincronismo en transición cerrada</li>
+          <li>Mantenimiento preventivo y correctivo</li>
+          <li>Contratos de mantenimiento y control operativo</li>
+          <li>Mantenimiento de transformadores hasta 500 kVA</li>
+          <li>Servicio de electricista especializado in house</li>
+        </ul>
+      </div>
+      <img class="revelar" src="img/generacion/edificio-autogeneracion.jpg" alt="Edificio de autogeneración con generadores y radiadores">
+    </div>
+  </div>
+</section>
+
+<!-- ================= GREEN ENERGY (full bleed) ================= -->
+<div class="full-bleed">
+  <img src="img/fotovoltaico/fv-cubierta.jpg" alt="Sistema fotovoltaico sobre cubierta industrial">
+  <div class="velo">
+    <div class="contenedor">
+      <span class="etiqueta" style="color:var(--amarillo)">Soluciones de Energías Renovables</span>
+      <h2>Energías renovables con criterio de ingeniería</h2>
+      <p>Solar fotovoltaica, almacenamiento BESS y microredes dimensionadas sobre su perfil de carga real — para reducir su costo de energía y su huella de CO₂ sin arriesgar la continuidad de la operación.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ALIANZA SCHNEIDER (ECOXPERT) ================= -->
+<section id="schneider" class="sch">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta">Alianza Estratégica</span>
+      <h2 class="titulo">INPROCONFI + Schneider Electric</h2>
+      <p class="subtitulo">Partner certificado <strong style="color:var(--verde-sch-osc)">EcoXpert™ Power Automation</strong> — la insignia del ecosistema Schneider que acredita expertise en automatización de potencia y subestaciones digitales.</p>
+      <div class="linea-amarilla"></div>
+      <div class="logos-alianza">
+        <img src="img/logo/logo-horizontal.png" alt="INPROCONFI S.A.">
+        <div class="sep"></div>
+        <img src="img/logo/logo-ecoxpert-badge.png" alt="EcoXpert — Certified by Schneider Electric">
+        <div class="sep"></div>
+        <img src="img/logo/logo-schneider-lifeison.png" alt="Life Is On — Schneider Electric">
+      </div>
+    </div>
+
+    <div class="sch-dos">
+      <div class="revelar">
+        <h3>Una red mundial. Una certificación de élite.</h3>
+        <p>EcoXpert es el programa con el que Schneider Electric entrena y certifica a los integradores líderes de cada especialidad: una red global de <strong>3.000 partners certificados en 40 países</strong>. No es una distribución: es una alianza técnica con acceso a la tecnología, las herramientas de ingeniería y el respaldo directo del fabricante.</p>
+        <p>La insignia <strong>Power Automation</strong> es una de las más exigentes del programa: acredita la capacidad probada de desplegar sistemas de automatización de subestaciones de alta y media tensión — protección, control y SCADA eléctrico sobre el estándar IEC 61850.</p>
+        <p>En la práctica significa una cosa: cuando INPROCONFI implementa tecnología Schneider en su planta, el fabricante está detrás de cada entrega.</p>
+      </div>
+      <img class="revelar" src="img/productos/schneider-celdas-ingeniero.jpg" alt="Ingeniero configurando celdas EcoStruxure de Schneider Electric">
+    </div>
+
+    <div class="sch-verbos revelar">
+      <div class="sch-verbo"><b>Diseñar</b><span>Ingeniería y arquitectura de la solución sobre IEC 61850</span></div>
+      <div class="sch-verbo"><b>Implementar</b><span>Despliegue, configuración y comisionado certificado</span></div>
+      <div class="sch-verbo"><b>Integrar</b><span>Protecciones, RTUs, SCADA y microredes en un solo sistema</span></div>
+      <div class="sch-verbo"><b>Mantener</b><span>Soporte local con las herramientas oficiales del fabricante</span></div>
+    </div>
+
+    <div class="sch-servicios">
+      <div class="sch-serv revelar">
+        <h4>Subestación digital con EPAS</h4>
+        <p>EcoStruxure Power Automation System: controladores de bahía C264, gateways y HMI — la evolución de PACiS para redes AT/MT.</p>
+        <a href="#" data-producto="epas">Ver ficha técnica →</a>
+      </div>
+      <div class="sch-serv revelar">
+        <h4>SCADA eléctrico Power Operation</h4>
+        <p>Supervisión y control del sistema eléctrico completo: observabilidad, alarmas, tendencias y registro de eventos.</p>
+      </div>
+      <div class="sch-serv revelar">
+        <h4>Protecciones PowerLogic P5 &amp; P7</h4>
+        <p>Parametrización, pruebas por inyección secundaria y comisionado de la nueva generación de relés con ciberseguridad embebida.</p>
+        <a href="#" data-producto="powerlogic-p5-p7">Ver ficha técnica →</a>
+      </div>
+      <div class="sch-serv revelar">
+        <h4>Automatización de distribución T300</h4>
+        <p>RTUs para alimentadores y reconectadores telecontrolados: menos tiempo de falla, menos cuadrillas a ciegas.</p>
+        <a href="#" data-producto="powerlogic-t300">Ver ficha técnica →</a>
+      </div>
+      <div class="sch-serv revelar">
+        <h4>Microredes EcoStruxure</h4>
+        <p>Microgrid Advisor (optimización en la nube) y Microgrid Operation (control en sitio) con BESS — la sección siguiente lo detalla.</p>
+        <a href="#microgrid">Ver solución de microredes →</a>
+      </div>
+      <div class="sch-serv revelar">
+        <h4>Medición y calidad de energía</h4>
+        <p>Medidores PowerLogic y analítica de energía integrados a EcoStruxure para gestionar costo y calidad del suministro.</p>
+      </div>
+    </div>
+
+    <div class="sch-proyectos-titulo revelar">
+      <h3>Proyectos con Schneider</h3>
+      <p>La alianza no es un logo en la pared: son proyectos entregados y en ejecución con tecnología EcoStruxure.</p>
+    </div>
+    <div class="sch-proyectos" id="sch-proyectos"></div>
+
+    <div class="sch-cierre revelar">
+      <div>
+        <h3>¿Proyecto con tecnología Schneider en mente?</h3>
+        <p>Del diagnóstico de su instalación a la subestación digital operando: un partner certificado, con el fabricante detrás.</p>
+      </div>
+      <a class="btn" style="background:#fff;color:var(--verde-sch-osc);font-weight:700" href="#contacto">Consulte su proyecto</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MICROREDES SCHNEIDER ================= -->
+<section id="microgrid">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta">Microredes — EcoStruxure de Schneider Electric</span>
+      <h2 class="titulo">Su propia red inteligente,<br>que se gestiona sola</h2>
+      <p class="subtitulo">Una microred integra y gobierna sus recursos energéticos —red pública, generación local, solar, baterías y cargas— para que su operación decida cuándo consumir, producir, almacenar o vender energía. Como partner EcoXpert Power Automation, la diseñamos, construimos y operamos en Ecuador.</p>
+      <div class="linea-amarilla"></div>
+    </div>
+
+    <!-- Tres razones para una microred -->
+    <div class="mg-beneficios">
+      <div class="mg-card revelar">
+        <h3>Resiliencia</h3>
+        <p>Administre los cortes de red asegurando la estabilidad de la operación: transición automática a modo isla, deslastre inteligente de cargas y arranque en negro (black start).</p>
+        <div class="mg-como"><strong>Cómo:</strong> red + generación local + BESS + gestión de cargas críticas</div>
+      </div>
+      <div class="mg-card revelar">
+        <h3>Economía</h3>
+        <p>Reduzca picos de demanda, gestione la tarifa horaria y participe en respuesta a la demanda. La optimización predictiva puede reducir el costo energético hasta un 30%.</p>
+        <div class="mg-como"><strong>Cómo:</strong> corte de pico, arbitraje tarifario y despacho optimizado por pronóstico</div>
+      </div>
+      <div class="mg-card revelar">
+        <h3>Sostenibilidad</h3>
+        <p>Integre generación renovable con autoconsumo máximo y registre el progreso de reducción de CO₂ de su operación (alcances 1 y 2).</p>
+        <div class="mg-como"><strong>Cómo:</strong> solar fotovoltaica + BESS + medición y analítica de energía</div>
+      </div>
+    </div>
+
+    <!-- Arquitectura de dos niveles -->
+    <div class="mg-arq revelar">
+      <h3>Dos cerebros, una microred</h3>
+      <div class="mg-sub">La arquitectura EcoStruxure es escalable: desde una planta con respaldo hasta una central híbrida de gran escala.</div>
+      <div class="mg-niveles">
+        <div class="mg-nivel">
+          <span class="mg-tag">En la nube — optimización económica</span>
+          <h4>EcoStruxure Microgrid Advisor (EMA)</h4>
+          <p>Pronostica y optimiza cómo su sitio consume, produce, almacena o vende energía, con datos de clima, tarifas y mercado.</p>
+          <ul>
+            <li>Gestión tarifaria y reducción de picos de demanda</li>
+            <li>Respuesta a la demanda ante solicitudes de agregadores</li>
+            <li>Maximización del autoconsumo renovable</li>
+            <li>Pronóstico de generación renovable y de eventos</li>
+          </ul>
+        </div>
+        <div class="mg-nivel">
+          <span class="mg-tag">En sitio — estabilidad y control</span>
+          <h4>EcoStruxure Microgrid Operation (EMO)</h4>
+          <p>Controla en tiempo real la estabilidad y confiabilidad de la instalación, aun sin conexión a la nube.</p>
+          <ul>
+            <li>Transición automática red ⇄ isla preservando la continuidad</li>
+            <li>Estrategia de estabilización P/Q y balanceo producción-consumo</li>
+            <li>Deslastre de carga y arranque en negro</li>
+            <li>Ciberseguridad conforme IEC 62443</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mg-ders">
+        <span class="mg-der">Red pública</span>
+        <span class="mg-der">Generadores diésel / gas</span>
+        <span class="mg-der">Solar fotovoltaica</span>
+        <span class="mg-der">BESS</span>
+        <span class="mg-der">Cargadores de vehículos eléctricos</span>
+        <span class="mg-der">UPS y cargas críticas</span>
+        <span class="mg-der">HVAC</span>
+        <span class="mg-der">Cogeneración</span>
+      </div>
+      <div class="mg-conector">INTEGRACIÓN DE CUALQUIER RECURSO ENERGÉTICO VÍA MODBUS · IEC 61850 · DNP3</div>
+    </div>
+
+    <!-- BESS -->
+    <div class="mg-bess">
+      <img class="revelar" src="img/generacion/bess-contenedores.jpg" alt="Patio de almacenamiento de energía BESS en contenedores con transformadores">
+      <div class="revelar">
+        <h3>BESS: la batería que trabaja para su operación</h3>
+        <ul>
+          <li>Configuraciones desde 60 kW hasta 4 MW, con capacidad de hasta 4 MWh, en solución contenerizada lista para instalar</li>
+          <li>Reserva de energía ante cortes de red: más autonomía para su instalación</li>
+          <li>Corte de pico: reduce el consumo en horas pico para no superar los límites contratados</li>
+          <li>Control de tensión: inyecta potencia activa o reactiva según lo requiera la red</li>
+          <li>Almacena el excedente renovable para maximizar el autoconsumo</li>
+          <li>Operación en ambos modos: conectado a la red (grid-tied) o formando red en isla (grid-forming)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Ciclo de vida -->
+    <div class="mg-ciclo revelar">
+      <h3>Un solo aliado en todo el ciclo del proyecto</h3>
+      <div class="mg-pasos">
+        <div class="mg-paso"><div class="n">1</div><h4>Evaluación</h4><p>Auditoría del sitio, perfil de carga y viabilidad energética</p></div>
+        <div class="mg-paso"><div class="n">2</div><h4>Diseño</h4><p>Estudios eléctricos y dinámicos, dimensionamiento de DER y modelado en ETAP</p></div>
+        <div class="mg-paso"><div class="n">3</div><h4>Validación</h4><p>Gemelo digital del controlador: pruebas simuladas antes de tocar su planta</p></div>
+        <div class="mg-paso"><div class="n">4</div><h4>Construcción</h4><p>Instalación de DER e infraestructura, integración de sistemas y comisionado</p></div>
+        <div class="mg-paso"><div class="n">5</div><h4>Operación</h4><p>Servicio, mantenimiento y optimización continua de la microred</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTOS ================= -->
+<section id="productos">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta">Productos</span>
+      <h2 class="titulo">Protection, Automation &amp; Control</h2>
+      <p class="subtitulo">Monitoreo, protección y control de sus activos eléctricos con protocolos abiertos e integración con su SCADA existente — sin atarlo a un solo proveedor.</p>
+      <div class="linea-amarilla"></div>
+    </div>
+
+    <div class="prod-grid">
+      <div class="prod revelar">
+        <img src="img/productos/megger-insulogic.jpg" alt="Megger InsuLogix G2, monitor de acetileno, hidrógeno y humedad" class="contener">
+        <div class="prod-cuerpo">
+          <div class="prod-marca">Megger — Monitoreo DGA</div>
+          <h3>InsuLogix® G2 — Acetileno, Hidrógeno &amp; Humedad</h3>
+          <p>Monitor en línea de gases disueltos para transformadores de potencia: detecta hidrógeno (fallas incipientes, desde 25 ppm), acetileno (arcos de alta energía, desde 0,5 ppm mediante sensor láser autocalibrado) y humedad (desde 2 ppm). Se instala sin sacar el transformador de servicio. Soporte local vía EMS Testing, Value Added Partner de Megger en Ecuador.</p>
+          <a href="#" data-producto="insulogix-g2">Ver ficha técnica →</a>
+        </div>
+      </div>
+
+      <div class="prod revelar">
+        <img src="img/productos/monitor-dga.jpg" alt="ICMmonitor, monitor de descargas parciales en línea" class="contener">
+        <div class="prod-cuerpo">
+          <div class="prod-marca">Power Diagnostix by Megger</div>
+          <h3>ICMmonitor — Descargas Parciales en Línea</h3>
+          <p>Supervisa continuamente el aislamiento de activos de media y alta tensión combinando tres instrumentos en uno: monitor de descargas parciales, analizador de espectro y detector acústico. Su supresión de ruido permite medir en ambientes con interferencias, y el análisis de tendencias detecta defectos en fase temprana. Implementado por EMS Testing, partner de Megger para soluciones de descargas parciales.</p>
+          <a href="#" data-producto="icmmonitor">Ver ficha técnica →</a>
+        </div>
+      </div>
+
+      <div class="prod revelar">
+        <img src="img/productos/woodward-easygen.jpg" alt="Administradores energéticos Woodward easYgen" class="contener">
+        <div class="prod-cuerpo">
+          <div class="prod-marca">Woodward</div>
+          <h3>Administradores Energéticos easYgen</h3>
+          <p>Controladores de gestión de potencia para grupos electrógenos diésel, gas o hidroeléctricos: sincronización, paralelismo, protecciones y reparto de carga de 1 a 32 unidades en operación isócrona. La serie easYgen-3000XT es la referencia en aplicaciones críticas.</p>
+          <a href="#" data-producto="easygen-3000xt">Ver ficha técnica →</a>
+        </div>
+      </div>
+
+      <div class="prod revelar">
+        <img src="img/productos/schneider-p5.jpg" alt="Relé de protección Schneider Electric PowerLogic P5" class="contener">
+        <div class="prod-cuerpo">
+          <div class="prod-marca">Schneider Electric</div>
+          <h3>Relés de Protección PowerLogic P5 &amp; P7</h3>
+          <p>La nueva generación de protección de media tensión: P5 compacto con ciberseguridad embebida certificada y P7 modular de alto desempeño con pantalla táctil. Comunicación IEC 61850 para subestación digital.</p>
+          <a href="#" data-producto="powerlogic-p5-p7">Ver ficha técnica →</a>
+        </div>
+      </div>
+
+      <div class="prod revelar">
+        <img src="img/productos/schneider-t300-sistema.jpg" alt="RTU Schneider Electric PowerLogic T300" class="contener">
+        <div class="prod-cuerpo">
+          <div class="prod-marca">Schneider Electric</div>
+          <h3>PowerLogic T300 — Automatización de Redes</h3>
+          <p>RTU modular para automatización de redes de distribución: control remoto de alimentadores y reconectadores, detección de paso de falla y comunicación IEC 60870-5-104 / DNP3 con su centro de control.</p>
+          <a href="#" data-producto="powerlogic-t300">Ver ficha técnica →</a>
+        </div>
+      </div>
+
+      <div class="prod revelar">
+        <img src="img/productos/weg-celdas.jpg" alt="Celdas de media tensión WEG línea MTW" class="contener">
+        <div class="prod-cuerpo">
+          <div class="prod-marca">WEG</div>
+          <h3>Celdas de Media Tensión WEG</h3>
+          <p>Celdas de 2,3 a 36 kV conforme IEC 62271-200, resistentes a arco interno, ensambladas y probadas en fábrica. Líneas MTW, CCW07 y GIS HMGS para distribución, protección y maniobra industrial y de utilities, con asistencia técnica autorizada WEG T&amp;D vía EMS Testing.</p>
+          <a href="#" data-producto="weg-celdas">Ver ficha técnica →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Línea Woodward completa -->
+    <div class="woodward-linea revelar">
+      <div class="wl-cabecera">
+        <div>
+          <div class="prod-marca">Woodward — Línea completa de gestión de potencia</div>
+          <h3>Del controlador del grupo al gemelo digital del sistema</h3>
+        </div>
+        <p>Suministramos, configuramos y ponemos en servicio toda la familia Woodward para plantas de generación, sincronismo y microredes.</p>
+      </div>
+      <div class="wl-grid">
+        <a class="wl-item" href="#" data-producto="easygen-3000xt">
+          <h4>easYgen-3000XT</h4>
+          <p>Controlador de grupos electrógenos: sincronización, protecciones, reparto de carga y paralelismo de 1 a 32 unidades en isócrono. Emergencia, cogeneración, marina y paralelo con la red.</p>
+          <span>Ver ficha técnica →</span>
+        </a>
+        <a class="wl-item" href="#" data-producto="ls-6xt">
+          <h4>LS-5 / LS-6XT</h4>
+          <p>Controladores de interruptor y sincronización para operación en paralelo con la red o en isla: desacople de red, protecciones integradas y gestión de hasta 64 interruptores (LS-6XT), integrados con easYgen vía CAN o Ethernet.</p>
+          <span>Ver ficha técnica →</span>
+        </a>
+        <a class="wl-item" href="#" data-producto="easyi">
+          <h4>easYi</h4>
+          <p>Controlador para almacenamiento en baterías (BESS) y recursos distribuidos —solar, eólica, celdas de combustible—: optimiza ciclos de carga y descarga, regula frecuencia y tensión en isla y se integra al SCADA.</p>
+          <span>Ver ficha técnica →</span>
+        </a>
+        <a class="wl-item" href="#" data-producto="easyview">
+          <h4>easYview</h4>
+          <p>Visualización web plug-and-play del sistema de potencia: hasta 4 controladores easYgen-XT más la red, en pantallas de 7", 10" y 15", personalizable e integrable con SCADA de terceros.</p>
+          <span>Ver ficha técnica →</span>
+        </a>
+        <a class="wl-item" href="#" data-producto="easysim">
+          <h4>easYsim</h4>
+          <p>Simulación en la nube con gemelos digitales del sistema —grupos, interruptores, renovables— para probar secuencias de carga y fallas de red, entrenar operadores y validar el comisionado sin riesgo.</p>
+          <span>Ver ficha técnica →</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= TESTIMONIOS ================= -->
+<section class="fondo-suave" style="padding-top:90px;padding-bottom:90px">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta">Testimonios</span>
+      <h2 class="titulo">Qué opinan nuestros clientes</h2>
+      <div class="linea-amarilla"></div>
+    </div>
+    <div class="testimonios">
+      <div class="testimonio revelar" style="background:#fff">
+        <p>Gracias a Inproconfi y su servicio 24/7, la crisis de energía en Ecuador en el 2024 pasó desapercibida.</p>
+        <div class="autor">Grupo Difare</div>
+      </div>
+      <div class="testimonio revelar" style="background:#fff">
+        <p>Gracias a las soluciones implementadas por Inproconfi hemos optimizado nuestros procesos, reduciendo significativamente las pérdidas de producto y ahorrando innumerables horas de trabajo. Su experiencia y enfoque estratégico han marcado una diferencia real en nuestra operación.</p>
+        <div class="autor">Nicovita</div>
+      </div>
+    </div>
+
+    <div class="clientes-strip revelar">
+      <div class="cs-titulo">Confían en nosotros</div>
+      <div class="clientes-logos">
+        <img src="img/testimonios/logo-celec.png" alt="CELEC EP">
+        <img src="img/testimonios/logo-difare.png" alt="Grupo Difare">
+        <img src="img/testimonios/logo-skretting.png" alt="Skretting">
+        <img src="img/testimonios/logo-nicovita.png" alt="Nicovita">
+        <img src="img/testimonios/logo-santa-priscila.png" alt="Santa Priscila">
+        <img src="img/testimonios/logo-kubiec.png" alt="Kubiec">
+        <img src="img/testimonios/logo-wyndham.png" alt="Wyndham Hotels & Resorts">
+        <img src="img/testimonios/logo-terminal-gye.png" alt="Terminal Terrestre de Guayaquil">
+        <img src="img/testimonios/logo-songa.png" alt="Songa">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NOTICIAS DEL SECTOR ================= -->
+<section id="noticias">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta">Actualidad</span>
+      <h2 class="titulo">Noticias del sector</h2>
+      <p class="subtitulo">Lo que está pasando en el sector eléctrico ecuatoriano, en los equipos de prueba especializados y en la ingeniería de potencia — con nuestra lectura de por qué le importa a su operación.</p>
+      <div class="linea-amarilla"></div>
+    </div>
+    <div class="filtros-casos" id="filtros-noticias" aria-label="Filtrar noticias por categoría"></div>
+    <div class="noticias-grid" id="noticias-grid"></div>
+    <div class="noticias-nota">Sección curada por el equipo INPROCONFI · Cada nota enlaza a su fuente original</div>
+  </div>
+</section>
+
+<!-- ================= CONTACTO ================= -->
+<section class="contacto" id="contacto">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta" style="color:var(--amarillo)">Contáctenos</span>
+      <h2 class="titulo">Lleve su operación al siguiente nivel</h2>
+      <p class="subtitulo">Empiece con una evaluación técnica de diagnóstico de su instalación: entendemos primero la criticidad de su operación, cotizamos después. Respuesta en horario 24/7.</p>
+    </div>
+    <div class="contacto-grid">
+      <div class="contacto-item revelar"><div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-10.4A6.5 6.5 0 0 1 12 4a6.5 6.5 0 0 1 6.5 6.6C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg></div><h3>Ubicación</h3><p>Almax Plus, Bodega 04, Lote 18 — Guayaquil, Ecuador</p></div>
+      <div class="contacto-item revelar"><div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div><h3>Teléfono</h3><a href="tel:+593995776695">+593 99 577 6695</a></div>
+      <div class="contacto-item revelar"><div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4.5 7l7.5 6 7.5-6"/></svg></div><h3>Correo</h3><a href="mailto:ventas@inproconfi.com">ventas@inproconfi.com</a></div>
+      <div class="contacto-item revelar"><div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c-4.7 4.7-4.7 12.3 0 17M12 3.5c4.7 4.7 4.7 12.3 0 17"/></svg></div><h3>Web</h3><a href="https://inproconfi.com" target="_blank" rel="noopener">www.inproconfi.com</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FICHA DEL ASESOR (uso interno) ================= -->
+<section class="ficha" id="ficha">
+  <div class="contenedor">
+    <div class="centrado">
+      <span class="aviso">Herramienta del asesor comercial</span>
+      <h2 class="titulo" style="font-size:clamp(26px,3.5vw,40px)">Ficha de cliente</h2>
+      <p class="subtitulo">Registre el contacto, califíquelo contra el perfil de cliente ideal, anote los requisitos SSO y agende el servicio. La información se guarda en este equipo.</p>
+    </div>
+
+    <form id="form-ficha" onsubmit="return false">
+    <div class="ficha-grid">
+
+      <!-- 1. Contacto -->
+      <div class="panel">
+        <h3><span class="badge">1</span>Datos de contacto</h3>
+        <div class="fila-2">
+          <div class="campo"><label>Empresa *</label><input id="f-empresa" type="text" placeholder="Nombre de la empresa"></div>
+          <div class="campo"><label>RUC</label><input id="f-ruc" type="text" placeholder="RUC"></div>
+        </div>
+        <div class="fila-2">
+          <div class="campo"><label>Nombre del contacto *</label><input id="f-nombre" type="text" placeholder="Nombre y apellido"></div>
+          <div class="campo"><label>Cargo</label><input id="f-cargo" type="text" placeholder="Gerente de mantenimiento…"></div>
+        </div>
+        <div class="fila-2">
+          <div class="campo"><label>Teléfono / WhatsApp</label><input id="f-telefono" type="tel" placeholder="+593 …"></div>
+          <div class="campo"><label>Correo</label><input id="f-correo" type="email" placeholder="correo@empresa.com"></div>
+        </div>
+        <div class="fila-2">
+          <div class="campo"><label>Ciudad</label><input id="f-ciudad" type="text" placeholder="Guayaquil"></div>
+          <div class="campo"><label>Sector</label>
+            <select id="f-sector">
+              <option value="">Seleccione…</option>
+              <option>Energético</option><option>Petrolero</option><option>Industrial</option>
+              <option>Pesquero / Acuícola</option><option>Alimentos</option><option>Comercial / Logística</option><option>Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="campo"><label>¿Cómo nos conoció?</label><input id="f-origen" type="text" placeholder="Referido, LinkedIn, visita, feria…"></div>
+      </div>
+
+      <!-- 2. Calificación ICP -->
+      <div class="panel">
+        <h3><span class="badge">2</span>Calificación — Perfil de cliente ideal</h3>
+        <label class="check"><input type="checkbox" class="icp" data-pts="2" id="q-infra"> Opera infraestructura eléctrica propia (subestación, transformadores, generación, celdas MT)</label>
+        <label class="check"><input type="checkbox" class="icp" data-pts="2" id="q-criticidad"> Una parada no programada le genera pérdidas significativas (operación crítica / producción continua)</label>
+        <label class="check"><input type="checkbox" class="icp" data-pts="2" id="q-decision"> El contacto tiene poder de decisión o influencia directa en la compra</label>
+        <label class="check"><input type="checkbox" class="icp" data-pts="2" id="q-presupuesto"> Tiene presupuesto disponible o proyecto aprobado en los próximos 6 meses</label>
+        <label class="check"><input type="checkbox" class="icp" data-pts="1" id="q-normativo"> Requiere cumplimiento normativo o auditorías (distribuidora, seguros, ISO, ARCONEL)</label>
+        <label class="check"><input type="checkbox" class="icp" data-pts="1" id="q-recurrente"> Muestra interés en contrato recurrente de mantenimiento (retainer / SLA)</label>
+        <div class="icp-score" id="icp-score">Marque los criterios que cumple el cliente</div>
+        <div class="campo" style="margin-top:16px"><label>Costo de no hacer (¿cuánto le cuesta al cliente NO resolver esto?)</label>
+          <textarea id="f-costo" placeholder="Ej.: cada parada de planta le cuesta ~USD …/hora; multa de la distribuidora; pérdida de producto…"></textarea>
+        </div>
+      </div>
+
+      <!-- 3. Preferencias y consultas -->
+      <div class="panel">
+        <h3><span class="badge">3</span>Preferencias y consultas</h3>
+        <div class="campo"><label>Servicios de interés</label>
+          <div class="fila-2">
+            <label class="check"><input type="checkbox" class="serv" value="Servicios y Mantenimiento"> Servicios y Mantenimiento</label>
+            <label class="check"><input type="checkbox" class="serv" value="Proyectos Industriales"> Proyectos Industriales</label>
+            <label class="check"><input type="checkbox" class="serv" value="Infraestructura — Utilities"> Infraestructura — Utilities</label>
+            <label class="check"><input type="checkbox" class="serv" value="Generación Industrial"> Generación Industrial</label>
+            <label class="check"><input type="checkbox" class="serv" value="Productos PAC"> Productos PAC</label>
+            <label class="check"><input type="checkbox" class="serv" value="Fotovoltaico / Green Energy"> Fotovoltaico / Green Energy</label>
+          </div>
+        </div>
+        <div class="campo"><label>Notas del asesor (preferencias, dolores, consultas del cliente)</label>
+          <textarea id="f-notas" style="min-height:120px" placeholder="Ej.: le preocupa el transformador principal (2010, sin análisis de aceite reciente); prefiere trabajos en fin de semana; pidió referencia de Nicovita…"></textarea>
+        </div>
+      </div>
+
+      <!-- 4. SSO + Agenda -->
+      <div class="panel">
+        <h3><span class="badge">4</span>Requisitos SSO para ejecutar el servicio</h3>
+        <div class="fila-2">
+          <label class="check"><input type="checkbox" class="sso" value="Inducción de seguridad del cliente"> Inducción de seguridad del cliente</label>
+          <label class="check"><input type="checkbox" class="sso" value="Permiso de trabajo (PT)"> Permiso de trabajo (PT)</label>
+          <label class="check"><input type="checkbox" class="sso" value="Trabajo en altura"> Trabajo en altura</label>
+          <label class="check"><input type="checkbox" class="sso" value="Espacios confinados"> Espacios confinados</label>
+          <label class="check"><input type="checkbox" class="sso" value="Bloqueo y etiquetado LOTO"> Bloqueo y etiquetado (LOTO)</label>
+          <label class="check"><input type="checkbox" class="sso" value="EPP dieléctrico específico"> EPP dieléctrico específico</label>
+          <label class="check"><input type="checkbox" class="sso" value="Certificados IESS / pólizas del personal"> Certificados IESS / pólizas</label>
+          <label class="check"><input type="checkbox" class="sso" value="Exámenes médicos ocupacionales"> Exámenes médicos ocupacionales</label>
+        </div>
+        <div class="campo"><label>Otros requisitos SSO / observaciones</label>
+          <textarea id="f-sso-otros" placeholder="Ej.: charla de 5 minutos diaria, supervisor SSO del cliente presente, horario restringido…"></textarea>
+        </div>
+
+        <h3 style="margin-top:26px"><span class="badge"><svg class="ic-svg" viewBox="0 0 24 24" style="width:16px;height:16px"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M8 3.5v4M16 3.5v4M4 10.5h16"/></svg></span>Agenda del servicio</h3>
+        <div class="fila-2">
+          <div class="campo"><label>Tipo de actividad</label>
+            <select id="f-tipo-agenda">
+              <option value="">Seleccione…</option>
+              <option>Visita técnica / diagnóstico</option>
+              <option>Reunión comercial</option>
+              <option>Presentación de propuesta</option>
+              <option>Ejecución de servicio</option>
+              <option>Seguimiento</option>
+            </select>
+          </div>
+          <div class="campo"><label>Lugar</label><input id="f-lugar" type="text" placeholder="Planta del cliente, oficina, virtual…"></div>
+        </div>
+        <div class="fila-2">
+          <div class="campo"><label>Fecha</label><input id="f-fecha" type="date"></div>
+          <div class="campo"><label>Hora</label><input id="f-hora" type="time"></div>
+        </div>
+        <div class="campo"><label>Notas de la agenda</label><input id="f-agenda-notas" type="text" placeholder="Confirmar acceso de vehículo, llevar EPP, enviar recordatorio…"></div>
+      </div>
+    </div>
+
+    <div class="ficha-acciones">
+      <button class="btn btn-azul" id="btn-guardar">Guardar ficha</button>
+      <button class="btn btn-borde" id="btn-copiar">Copiar resumen</button>
+      <button class="btn btn-borde" id="btn-csv">Descargar CSV (Excel/CRM)</button>
+      <button class="btn btn-borde" id="btn-exportar">Descargar respaldo (JSON)</button>
+      <button class="btn btn-borde" id="btn-nueva">Nueva ficha</button>
+      <span class="nota-guardado" id="nota-guardado">✓ Ficha guardada en este equipo</span>
+    </div>
+    </form>
+
+    <div class="fichas-guardadas" id="fichas-guardadas" style="display:none">
+      <h3>Fichas guardadas en este equipo</h3>
+      <div class="embudo" id="embudo-fichas"></div>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>Empresa</th><th>Contacto</th><th>Calificación</th><th>Agenda</th><th>Guardada</th><th>Acciones</th></tr></thead>
+        <tbody id="tabla-fichas"></tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>INPROCONFI S.A.</strong> — Ingeniería, proyectos, construcción y fiscalización · © 2026 Todos los derechos reservados
+  <div style="margin-top:10px;font-size:11.5px;opacity:.7">
+    Fotografías de referencia vía Wikimedia Commons — Coca Codo Sinclair: amalavida.tv (CC BY-SA 2.0);
+    casa de máquinas: Sinohydro Ecuador (CC BY-SA 4.0); central Agoyán: David C. S. (CC BY 3.0)
+  </div>
+</footer>
+
+<!-- ================= MODAL: FICHA DE CASO DE ÉXITO ================= -->
+<div class="modal-caso" id="modal-caso" role="dialog" aria-modal="true">
+  <div class="mc-tarjeta">
+    <div class="mc-marca">
+      <img src="img/logo/logo-horizontal.png" alt="INPROCONFI S.A.">
+      <span>Ficha de caso de éxito · www.inproconfi.com · ventas@inproconfi.com · +593 99 577 6695</span>
+    </div>
+    <div class="mc-galeria">
+      <img class="mc-foto" id="mc-foto" alt="">
+      <button class="mc-cerrar" id="mc-cerrar" aria-label="Cerrar">✕</button>
+      <div class="mc-thumbs" id="mc-thumbs"></div>
+    </div>
+    <div class="mc-cuerpo">
+      <div class="mc-sector" id="mc-sector"></div>
+      <div class="mc-cliente" id="mc-cliente"></div>
+      <div class="mc-titulo" id="mc-titulo"></div>
+      <div class="mc-bloque"><div class="acto">El reto</div><p id="mc-reto"></p></div>
+      <div class="mc-bloque"><div class="acto">La solución</div><ul id="mc-solucion"></ul></div>
+      <div class="mc-bloque"><div class="acto">El beneficio</div><div class="mc-beneficio" id="mc-beneficio"></div></div>
+      <div class="mc-acciones">
+        <button class="btn btn-azul" id="mc-pdf">Guardar como PDF</button>
+        <button class="btn btn-borde" id="mc-cerrar2">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL: FICHA TÉCNICA DE PRODUCTO ================= -->
+<div class="modal-caso" id="modal-producto" role="dialog" aria-modal="true">
+  <div class="mc-tarjeta" style="position:relative">
+    <div class="mc-marca">
+      <img src="img/logo/logo-horizontal.png" alt="INPROCONFI S.A.">
+      <span>Ficha técnica de producto · www.inproconfi.com · ventas@inproconfi.com · +593 99 577 6695</span>
+    </div>
+    <div class="mc-galeria">
+      <img class="mc-foto" id="mp-foto" alt="">
+      <button class="mc-cerrar" id="mp-cerrar" aria-label="Cerrar">✕</button>
+    </div>
+    <button class="mc-cerrar mp-cerrar-alt" id="mp-cerrar-alt" aria-label="Cerrar">✕</button>
+    <div class="mc-cuerpo">
+      <div class="mc-sector" id="mp-marca"></div>
+      <div class="mc-cliente" id="mp-nombre"></div>
+      <div class="mc-bloque" style="margin-top:18px"><p id="mp-resumen"></p></div>
+      <div class="mp-nota" id="mp-nota"></div>
+      <div class="mc-bloque"><div class="acto">Capacidades principales</div><ul id="mp-capacidades"></ul></div>
+      <div class="mc-bloque"><div class="acto">Aplicaciones</div><ul id="mp-aplicaciones"></ul></div>
+      <div class="mc-acciones">
+        <a class="btn btn-azul" id="mp-enlace" href="#" target="_blank" rel="noopener"></a>
+        <button class="btn btn-borde" id="mp-pdf">Guardar como PDF</button>
+        <button class="btn btn-borde" id="mp-cerrar2">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Si edita los archivos de datos y el navegador no muestra los cambios,
+     suba el número de versión ?v= para forzar la actualización -->
+<script src="datos/casos-exito.js?v=9"></script>
+<script src="datos/productos.js?v=5"></script>
+<script src="datos/noticias.js?v=1"></script>
+<script src="datos/proyectos-schneider.js?v=1"></script>
+<script>
+/* ---------- Casos de éxito: tarjetas + ficha desplegable (modal) ---------- */
+(function(){
+  const grid = document.getElementById("casos-grid");
+  if (!grid || typeof CASOS_EXITO === "undefined") return;
+
+  /* --- Tarjetas resumidas: clic para abrir la ficha completa --- */
+  CASOS_EXITO.forEach((c, idx) => {
+    const solucion = (c.solucion || c.alcance || []).map(a => `<li>${a}</li>`).join("");
+    const card = document.createElement("article");
+    card.className = "caso revelar";
+    card.innerHTML = `
+      <img src="${c.imagen}" alt="${c.cliente}">
+      <div class="caso-cuerpo">
+        <div class="caso-sector">${c.sector}</div>
+        <h3>${c.cliente}</h3>
+        <h4>${c.titulo}</h4>
+        ${c.reto ? `<div class="acto">El reto</div><p class="reto">${c.reto}</p>` : ""}
+        <div class="acto">La solución</div>
+        <ul>${solucion}</ul>
+        ${(c.beneficio || c.resultado) ? `<div class="beneficio"><strong>El beneficio:</strong> ${c.beneficio || c.resultado}</div>` : ""}
+        <div class="ver-ficha">Ver ficha completa →</div>
+      </div>`;
+    card.addEventListener("click", () => abrirCaso(idx));
+    card.dataset.sector = c.sector;
+    grid.appendChild(card);
+  });
+
+  /* --- Filtros por sector --- */
+  const filtros = document.getElementById("filtros-casos");
+  if (filtros) {
+    const sectores = ["Todos", ...new Set(CASOS_EXITO.map(c => c.sector))];
+    sectores.forEach((s, i) => {
+      const b = document.createElement("button");
+      b.textContent = s;
+      if (i === 0) b.classList.add("activo");
+      b.addEventListener("click", () => {
+        filtros.querySelectorAll("button").forEach(x => x.classList.remove("activo"));
+        b.classList.add("activo");
+        grid.querySelectorAll(".caso").forEach(card => {
+          card.classList.toggle("oculto", s !== "Todos" && card.dataset.sector !== s);
+        });
+      });
+      filtros.appendChild(b);
+    });
+  }
+
+  /* --- Ficha del caso (modal con galería y PDF) --- */
+  const $ = id => document.getElementById(id);
+  const modal = $("modal-caso");
+
+  function abrirCaso(idx){
+    const c = CASOS_EXITO[idx];
+    const fotos = (c.fotos && c.fotos.length) ? c.fotos : [c.imagen];
+    $("mc-sector").textContent = c.sector;
+    $("mc-cliente").textContent = c.cliente;
+    $("mc-titulo").textContent = c.titulo;
+    $("mc-reto").textContent = c.reto || "";
+    $("mc-solucion").innerHTML = (c.solucion || c.alcance || []).map(a => `<li>${a}</li>`).join("");
+    $("mc-beneficio").textContent = c.beneficio || c.resultado || "";
+    $("mc-foto").src = fotos[0];
+    $("mc-foto").alt = c.cliente;
+    $("mc-thumbs").innerHTML = fotos.length > 1
+      ? fotos.map((f,i) => `<img src="${f}" class="${i===0?"activa":""}" data-foto="${f}" alt="Foto ${i+1}">`).join("")
+      : "";
+    modal.classList.add("abierto");
+    document.body.style.overflow = "hidden";
+    modal.scrollTop = 0;
+  }
+  function cerrarCaso(){
+    modal.classList.remove("abierto");
+    document.body.style.overflow = "";
+  }
+  $("mc-thumbs").addEventListener("click", e => {
+    const f = e.target.dataset.foto;
+    if (!f) return;
+    $("mc-foto").src = f;
+    $("mc-thumbs").querySelectorAll("img").forEach(t => t.classList.toggle("activa", t.dataset.foto === f));
+    e.stopPropagation();
+  });
+  $("mc-cerrar").addEventListener("click", cerrarCaso);
+  $("mc-cerrar2").addEventListener("click", cerrarCaso);
+  modal.addEventListener("click", e => { if (e.target === modal) cerrarCaso(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") cerrarCaso(); });
+
+  /* Guardar como PDF: imprime únicamente la ficha abierta
+     (en el diálogo del navegador elegir "Guardar como PDF") */
+  $("mc-pdf").addEventListener("click", () => {
+    document.body.classList.add("imprimir-caso");
+    window.print();
+  });
+  window.addEventListener("afterprint", () => document.body.classList.remove("imprimir-caso"));
+})();
+
+/* ---------- Fichas técnicas de productos (modal) ---------- */
+(function(){
+  if (typeof PRODUCTOS_DETALLE === "undefined") return;
+  const $ = id => document.getElementById(id);
+  const modal = $("modal-producto");
+
+  function abrirProducto(id){
+    const p = PRODUCTOS_DETALLE[id];
+    if (!p) return;
+    $("mp-marca").textContent = p.marca;
+    $("mp-nombre").textContent = p.nombre;
+    $("mp-resumen").textContent = p.resumen;
+    $("mp-capacidades").innerHTML = p.capacidades.map(c => `<li>${c}</li>`).join("");
+    $("mp-aplicaciones").innerHTML = p.aplicaciones.map(a => `<li>${a}</li>`).join("");
+    $("mp-nota").textContent = p.nota || "";
+    $("mp-nota").style.display = p.nota ? "block" : "none";
+    $("mp-enlace").href = p.enlace;
+    $("mp-enlace").textContent = p.enlaceTxt + " ↗";
+    if (p.imagen) {
+      $("mp-foto").src = p.imagen;
+      $("mp-foto").alt = p.nombre;
+      modal.classList.remove("mp-sin-foto");
+    } else {
+      modal.classList.add("mp-sin-foto");
+    }
+    modal.classList.add("abierto");
+    document.body.style.overflow = "hidden";
+    modal.scrollTop = 0;
+  }
+  function cerrarProducto(){
+    modal.classList.remove("abierto");
+    document.body.style.overflow = "";
+  }
+  document.querySelectorAll("[data-producto]").forEach(el => {
+    el.addEventListener("click", e => { e.preventDefault(); abrirProducto(el.dataset.producto); });
+  });
+  ["mp-cerrar","mp-cerrar-alt","mp-cerrar2"].forEach(id => $(id).addEventListener("click", cerrarProducto));
+  modal.addEventListener("click", e => { if (e.target === modal) cerrarProducto(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") cerrarProducto(); });
+  $("mp-pdf").addEventListener("click", () => {
+    document.body.classList.add("imprimir-caso");
+    window.print();
+  });
+})();
+
+/* ---------- Proyectos con Schneider ---------- */
+(function(){
+  const cont = document.getElementById("sch-proyectos");
+  if (!cont || typeof PROYECTOS_SCHNEIDER === "undefined") return;
+  PROYECTOS_SCHNEIDER.forEach(p => {
+    const d = document.createElement("article");
+    d.className = "sch-proy revelar";
+    const claseEstado = p.estado === "Entregado" ? "entregado" : "desarrollo";
+    d.innerHTML = `
+      <img src="${p.imagen}" alt="${p.titulo}">
+      <div class="sch-proy-cuerpo">
+        <div class="sp-meta"><span class="sp-cliente">${p.cliente}</span><span class="sp-estado ${claseEstado}">${p.estado}</span></div>
+        <h4>${p.titulo}</h4>
+        <p>${p.alcance}</p>
+        <div class="sp-tecs">${p.tecnologias.map(t => `<span class="sp-tec">${t}</span>`).join("")}</div>
+      </div>`;
+    cont.appendChild(d);
+  });
+})();
+
+/* ---------- Noticias del sector: tarjetas + filtros ---------- */
+(function(){
+  const grid = document.getElementById("noticias-grid");
+  if (!grid || typeof NOTICIAS === "undefined") return;
+  const claseCat = c => c.includes("Ecuador") ? "cat-ec" : c.includes("Equipos") ? "cat-eq" : "";
+  NOTICIAS.forEach(n => {
+    const card = document.createElement("article");
+    card.className = "noticia revelar";
+    card.dataset.categoria = n.categoria;
+    card.innerHTML = `
+      <div class="n-meta"><span class="n-cat ${claseCat(n.categoria)}">${n.categoria}</span><span class="n-fecha">${n.fecha}</span></div>
+      <h3>${n.titulo}</h3>
+      <p class="n-resumen">${n.resumen}</p>
+      <div class="n-angulo"><b>Por qué le importa:</b> ${n.angulo}</div>
+      <a class="n-fuente" href="${n.url}" target="_blank" rel="noopener">Leer en ${n.fuente} ↗</a>`;
+    grid.appendChild(card);
+  });
+  const filtros = document.getElementById("filtros-noticias");
+  const cats = ["Todas", ...new Set(NOTICIAS.map(n => n.categoria))];
+  cats.forEach((c, i) => {
+    const b = document.createElement("button");
+    b.textContent = c;
+    if (i === 0) b.classList.add("activo");
+    b.addEventListener("click", () => {
+      filtros.querySelectorAll("button").forEach(x => x.classList.remove("activo"));
+      b.classList.add("activo");
+      grid.querySelectorAll(".noticia").forEach(card => {
+        card.style.display = (c === "Todas" || card.dataset.categoria === c) ? "" : "none";
+      });
+    });
+    filtros.appendChild(b);
+  });
+})();
+
+/* ---------- Animación de aparición al hacer scroll ---------- */
+const observador = new IntersectionObserver(entradas => {
+  entradas.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observador.unobserve(e.target); } });
+}, { threshold: 0.12 });
+/* Escalonado sutil: los elementos hermanos aparecen en cascada de 80 ms */
+document.querySelectorAll(".revelar").forEach(el => {
+  const hermanos = el.parentElement ? [...el.parentElement.children].filter(x => x.classList.contains("revelar")) : [el];
+  const i = Math.max(0, hermanos.indexOf(el));
+  el.style.setProperty("--rev-delay", (Math.min(i, 5) * 80) + "ms");
+  observador.observe(el);
+});
+
+/* ============================================================
+   FICHA DEL ASESOR — captura, calificación ICP, SSO y agenda
+   Persistencia: localStorage de este navegador.
+   ============================================================ */
+(function(){
+  const $ = id => document.getElementById(id);
+  const LS_KEY = "inproconfi_fichas";
+  let editandoId = null;
+
+  /* --- Calificación ICP en vivo --- */
+  const MAX_PTS = 10;
+  function calcularICP(){
+    let pts = 0;
+    document.querySelectorAll(".icp:checked").forEach(c => pts += parseInt(c.dataset.pts));
+    const el = $("icp-score");
+    el.classList.remove("a","b","c");
+    if (pts >= 8)      { el.classList.add("a"); el.textContent = `★ ${pts}/${MAX_PTS} — CLIENTE IDEAL (A): priorizar, agendar diagnóstico ya`; }
+    else if (pts >= 5) { el.classList.add("b"); el.textContent = `● ${pts}/${MAX_PTS} — POTENCIAL (B): profundizar criticidad y costo de no hacer`; }
+    else if (pts >= 1) { el.classList.add("c"); el.textContent = `○ ${pts}/${MAX_PTS} — NUTRIR (C): mantener contacto, no invertir aún en propuesta`; }
+    else               { el.textContent = "Marque los criterios que cumple el cliente"; }
+    return pts;
+  }
+  document.querySelectorAll(".icp").forEach(c => c.addEventListener("change", calcularICP));
+
+  /* --- Serializar formulario --- */
+  const marcados = sel => [...document.querySelectorAll(sel + ":checked")].map(c => c.value);
+  function leerFicha(){
+    return {
+      id: editandoId || Date.now(),
+      guardada: new Date().toLocaleString("es-EC"),
+      empresa: $("f-empresa").value.trim(),
+      ruc: $("f-ruc").value.trim(),
+      nombre: $("f-nombre").value.trim(),
+      cargo: $("f-cargo").value.trim(),
+      telefono: $("f-telefono").value.trim(),
+      correo: $("f-correo").value.trim(),
+      ciudad: $("f-ciudad").value.trim(),
+      sector: $("f-sector").value,
+      origen: $("f-origen").value.trim(),
+      icp: [...document.querySelectorAll(".icp")].map(c => c.checked),
+      icpPts: calcularICP(),
+      costoNoHacer: $("f-costo").value.trim(),
+      servicios: marcados(".serv"),
+      notas: $("f-notas").value.trim(),
+      sso: marcados(".sso"),
+      ssoOtros: $("f-sso-otros").value.trim(),
+      agenda: {
+        tipo: $("f-tipo-agenda").value, lugar: $("f-lugar").value.trim(),
+        fecha: $("f-fecha").value, hora: $("f-hora").value,
+        notas: $("f-agenda-notas").value.trim()
+      }
+    };
+  }
+  function cargarFicha(f){
+    editandoId = f.id;
+    $("f-empresa").value=f.empresa; $("f-ruc").value=f.ruc; $("f-nombre").value=f.nombre;
+    $("f-cargo").value=f.cargo; $("f-telefono").value=f.telefono; $("f-correo").value=f.correo;
+    $("f-ciudad").value=f.ciudad; $("f-sector").value=f.sector; $("f-origen").value=f.origen;
+    document.querySelectorAll(".icp").forEach((c,i)=>c.checked = !!(f.icp && f.icp[i]));
+    $("f-costo").value=f.costoNoHacer;
+    document.querySelectorAll(".serv").forEach(c=>c.checked = f.servicios.includes(c.value));
+    $("f-notas").value=f.notas;
+    document.querySelectorAll(".sso").forEach(c=>c.checked = f.sso.includes(c.value));
+    $("f-sso-otros").value=f.ssoOtros;
+    $("f-tipo-agenda").value=f.agenda.tipo; $("f-lugar").value=f.agenda.lugar;
+    $("f-fecha").value=f.agenda.fecha; $("f-hora").value=f.agenda.hora;
+    $("f-agenda-notas").value=f.agenda.notas;
+    calcularICP();
+    document.getElementById("ficha").scrollIntoView();
+  }
+  function limpiar(){
+    editandoId = null;
+    document.getElementById("form-ficha").querySelectorAll("input,textarea,select").forEach(el=>{
+      if (el.type==="checkbox") el.checked=false; else el.value="";
+    });
+    calcularICP();
+  }
+
+  /* --- Persistencia --- */
+  const leerTodas = () => JSON.parse(localStorage.getItem(LS_KEY) || "[]");
+  const guardarTodas = fichas => localStorage.setItem(LS_KEY, JSON.stringify(fichas));
+
+  function pintarTabla(){
+    const fichas = leerTodas().slice().sort((a,b) => (b.icpPts||0) - (a.icpPts||0));
+    const cont = $("fichas-guardadas");
+    cont.style.display = fichas.length ? "block" : "none";
+    const clase = p => p>=8 ? "a" : p>=5 ? "b" : "c";
+    const letra = p => p>=8 ? "A" : p>=5 ? "B" : "C";
+    const nA = fichas.filter(f=>f.icpPts>=8).length,
+          nB = fichas.filter(f=>f.icpPts>=5&&f.icpPts<8).length,
+          nC = fichas.filter(f=>f.icpPts<5).length;
+    $("embudo-fichas").innerHTML = `
+      <div class="em-item em-total"><b>${fichas.length}</b> prospectos</div>
+      <div class="em-item em-a"><b>${nA}</b> A — cliente ideal</div>
+      <div class="em-item em-b"><b>${nB}</b> B — potencial</div>
+      <div class="em-item em-c"><b>${nC}</b> C — nutrir</div>`;
+    $("tabla-fichas").innerHTML = fichas.map(f => `
+      <tr>
+        <td><strong>${f.empresa || "—"}</strong></td>
+        <td>${f.nombre || "—"}${f.telefono ? " · " + f.telefono : ""}</td>
+        <td><span class="pill-score ${clase(f.icpPts)}">${letra(f.icpPts)} · ${f.icpPts}/10</span></td>
+        <td>${f.agenda.fecha ? f.agenda.fecha + (f.agenda.hora ? " " + f.agenda.hora : "") : "—"}</td>
+        <td>${f.guardada}</td>
+        <td><span class="accion" data-abrir="${f.id}">Abrir</span><span class="accion borrar" data-borrar="${f.id}">Borrar</span></td>
+      </tr>`).join("");
+  }
+  $("tabla-fichas").addEventListener("click", e => {
+    const abrir = e.target.dataset.abrir, borrar = e.target.dataset.borrar;
+    if (abrir) { const f = leerTodas().find(x=>x.id==abrir); if (f) cargarFicha(f); }
+    if (borrar && confirm("¿Borrar esta ficha? Esta acción no se puede deshacer.")) {
+      guardarTodas(leerTodas().filter(x=>x.id!=borrar)); pintarTabla();
+    }
+  });
+
+  /* --- Acciones --- */
+  $("btn-guardar").addEventListener("click", () => {
+    const f = leerFicha();
+    if (!f.empresa && !f.nombre) { alert("Registre al menos la empresa o el nombre del contacto."); return; }
+    const fichas = leerTodas().filter(x=>x.id!=f.id);
+    fichas.unshift(f);
+    guardarTodas(fichas);
+    editandoId = f.id;
+    pintarTabla();
+    const nota = $("nota-guardado");
+    nota.style.display="inline"; setTimeout(()=>nota.style.display="none", 3000);
+  });
+
+  function resumenTexto(f){
+    const icpTxt = f.icpPts>=8?"A — Cliente ideal":f.icpPts>=5?"B — Potencial":"C — Nutrir";
+    return [
+      `FICHA DE CLIENTE — INPROCONFI S.A.`,
+      `Empresa: ${f.empresa}${f.ruc?" (RUC "+f.ruc+")":""}`,
+      `Contacto: ${f.nombre}${f.cargo?" — "+f.cargo:""}`,
+      `Tel: ${f.telefono} | Correo: ${f.correo}`,
+      `Ciudad: ${f.ciudad} | Sector: ${f.sector} | Origen: ${f.origen}`,
+      ``,
+      `CALIFICACIÓN ICP: ${f.icpPts}/10 (${icpTxt})`,
+      f.costoNoHacer ? `Costo de no hacer: ${f.costoNoHacer}` : "",
+      ``,
+      `Servicios de interés: ${f.servicios.join(", ") || "—"}`,
+      f.notas ? `Notas: ${f.notas}` : "",
+      ``,
+      `REQUISITOS SSO: ${f.sso.join(", ") || "—"}${f.ssoOtros?" | Otros: "+f.ssoOtros:""}`,
+      ``,
+      `AGENDA: ${f.agenda.tipo || "—"} | ${f.agenda.fecha || "sin fecha"} ${f.agenda.hora||""} | ${f.agenda.lugar||""}`,
+      f.agenda.notas ? `Notas agenda: ${f.agenda.notas}` : ""
+    ].filter(l=>l!=="").join("\n");
+  }
+  $("btn-copiar").addEventListener("click", () => {
+    navigator.clipboard.writeText(resumenTexto(leerFicha())).then(()=>{
+      const nota = $("nota-guardado");
+      nota.textContent="✓ Resumen copiado — péguelo en WhatsApp, correo o CRM";
+      nota.style.display="inline";
+      setTimeout(()=>{nota.style.display="none";nota.textContent="✓ Ficha guardada en este equipo";}, 3500);
+    });
+  });
+  $("btn-exportar").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(leerTodas(), null, 2)], {type:"application/json"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "fichas_clientes_inproconfi.json";
+    a.click();
+  });
+
+  /* CSV para Excel/CRM (separador ; para Excel en español, BOM UTF-8) */
+  function csvFichas(){
+    const esc = v => '"' + String(v ?? "").replace(/"/g,'""').replace(/\r?\n/g," ") + '"';
+    const letra = p => p>=8 ? "A - Cliente ideal" : p>=5 ? "B - Potencial" : "C - Nutrir";
+    const cab = ["Empresa","RUC","Contacto","Cargo","Teléfono","Correo","Ciudad","Sector","Origen",
+                 "Puntaje ICP","Calificación","Costo de no hacer","Servicios de interés","Notas",
+                 "Requisitos SSO","SSO otros","Agenda tipo","Agenda fecha","Agenda hora","Agenda lugar","Agenda notas","Guardada"];
+    const filas = leerTodas().slice().sort((a,b)=>(b.icpPts||0)-(a.icpPts||0)).map(f => [
+      f.empresa, f.ruc, f.nombre, f.cargo, f.telefono, f.correo, f.ciudad, f.sector, f.origen,
+      f.icpPts, letra(f.icpPts||0), f.costoNoHacer, (f.servicios||[]).join(", "), f.notas,
+      (f.sso||[]).join(", "), f.ssoOtros, f.agenda.tipo, f.agenda.fecha, f.agenda.hora, f.agenda.lugar, f.agenda.notas, f.guardada
+    ].map(esc).join(";"));
+    return "﻿" + cab.map(esc).join(";") + "\r\n" + filas.join("\r\n");
+  }
+  $("btn-csv").addEventListener("click", () => {
+    if (!leerTodas().length) { alert("No hay fichas guardadas para exportar."); return; }
+    const blob = new Blob([csvFichas()], {type:"text/csv;charset=utf-8"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "prospectos_inproconfi.csv";
+    a.click();
+  });
+  $("btn-nueva").addEventListener("click", () => {
+    if (confirm("¿Limpiar el formulario para una nueva ficha? (guarde antes si no quiere perder los datos)")) limpiar();
+  });
+
+  pintarTabla();
+
+  /* Precarga desde el funnel del benchmark (botón "→ Ficha") */
+  try {
+    const pre = JSON.parse(localStorage.getItem("ficha_prefill") || "null");
+    if (pre) {
+      localStorage.removeItem("ficha_prefill");
+      $("f-empresa").value = pre.empresa || "";
+      $("f-nombre").value = pre.nombre || "";
+      $("f-cargo").value = pre.cargo || "";
+      $("f-correo").value = pre.correo || "";
+      if (pre.sector) {
+        const sel = $("f-sector");
+        const op = [...sel.options].find(o => pre.sector.toLowerCase().includes(o.value.toLowerCase().slice(0,6)) && o.value);
+        if (op) sel.value = op.value;
+      }
+      document.getElementById("ficha").scrollIntoView();
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>

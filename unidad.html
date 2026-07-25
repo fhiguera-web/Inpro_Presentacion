@@ -114,6 +114,58 @@ section{padding:clamp(56px,7vw,92px) 0}
 }
 .datos .txt{color:var(--gris);font-size:14px;margin-top:6px}
 
+/* ---------- Secuencia: un trabajo real, paso a paso ---------- */
+.secuencia{background:#0e1c33;color:#fff}
+.secuencia .etiqueta{color:var(--amarillo)}
+.secuencia .titulo{color:#fff}
+.secuencia .intro{color:#c3ccdb}
+.sec-proyecto{
+  display:inline-block;margin-top:22px;
+  font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#0e1c33;background:var(--amarillo);padding:8px 14px;border-radius:6px;
+}
+.sec-pasos{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-top:52px;
+}
+@media(max-width:1000px){.sec-pasos{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}}
+@media(max-width:560px){.sec-pasos{grid-template-columns:1fr}}
+.sec-paso{display:flex;flex-direction:column}
+.sec-foto{
+  display:block;position:relative;overflow:hidden;
+  border-radius:16px;aspect-ratio:3/4;background:#16294a;
+  cursor:zoom-in;border:none;padding:0;width:100%;
+}
+.sec-foto img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.4s cubic-bezier(.22,1,.36,1);
+}
+.sec-foto:hover img{transform:scale(1.06)}
+.sec-foto::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(6,16,34,.75),transparent 48%);
+}
+.sec-num{
+  position:absolute;left:14px;top:14px;z-index:2;
+  font:700 15px 'Raleway',sans-serif;color:#0e1c33;background:var(--amarillo);
+  width:32px;height:32px;border-radius:9px;display:grid;place-items:center;
+}
+.sec-paso h4{font-size:17px;font-weight:700;margin:16px 0 7px;color:#fff}
+.sec-paso p{font-size:13.5px;line-height:1.55;color:#9fb0c8;margin:0}
+/* Hilo que une los pasos en pantallas anchas */
+@media(min-width:1001px){
+  .sec-pasos{position:relative}
+  .sec-pasos::before{
+    content:"";position:absolute;left:6%;right:6%;top:16px;height:2px;
+    background:repeating-linear-gradient(90deg,rgba(242,203,4,.5) 0 8px,transparent 8px 16px);
+  }
+}
+.sec-nota{
+  margin-top:40px;padding:22px 26px;border-left:3px solid var(--amarillo);
+  background:rgba(255,255,255,.05);border-radius:0 12px 12px 0;
+  font-size:14.5px;line-height:1.6;color:#c3ccdb;
+}
+.sec-nota strong{color:#fff}
+
 /* ---------- Galería ---------- */
 .galeria{
   display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px;
@@ -314,6 +366,34 @@ footer a{color:var(--amarillo)}
       </div>
     </section>
 
+    ${u.secuencia ? `
+    <section class="secuencia">
+      <div class="contenedor">
+        <div class="revelar">
+          <span class="etiqueta">Un trabajo real</span>
+          <h2 class="titulo">${u.secuencia.titulo}</h2>
+          <div class="linea-amarilla"></div>
+          <p class="intro">${u.secuencia.intro}</p>
+          <span class="sec-proyecto">${u.secuencia.proyecto}</span>
+        </div>
+        <div class="sec-pasos" id="sec-pasos">
+          ${u.secuencia.pasos.map((s, i) => `
+            <article class="sec-paso revelar">
+              <button class="sec-foto" data-sec="${i}" aria-label="Ampliar: ${s.pie}">
+                <img src="${s.src}" alt="${s.pie}" loading="lazy">
+                <span class="sec-num">${s.n}</span>
+              </button>
+              <h4>${s.titulo}</h4>
+              <p>${s.texto}</p>
+            </article>`).join("")}
+        </div>
+        <p class="sec-nota revelar">
+          <strong>Cada maniobra queda documentada.</strong> El registro fotográfico acompaña al protocolo
+          firmado del trabajo: es la evidencia de qué se hizo, cómo se hizo y en qué condición quedó el equipo.
+        </p>
+      </div>
+    </section>` : ""}
+
     <section class="fondo-suave">
       <div class="contenedor">
         <div class="revelar">
@@ -394,23 +474,35 @@ footer a{color:var(--amarillo)}
     document.querySelectorAll(".datos .num").forEach(n => cont2.observe(n));
   }
 
-  /* --- Visor de fotografías --- */
+  /* --- Visor de fotografías ---
+     Sirve tanto a la galería como a la secuencia paso a paso: cada una
+     abre el visor con su propia lista, y las flechas recorren esa lista. */
   const visor = $("visor");
-  let actual = 0;
+  let lista = u.galeria, actual = 0;
   function mostrar(i){
-    actual = (i + u.galeria.length) % u.galeria.length;
-    const g = u.galeria[actual];
+    actual = (i + lista.length) % lista.length;
+    const g = lista[actual];
     $("v-foto").src = g.src;
     $("v-foto").alt = g.pie;
     $("v-pie").textContent = g.pie;
-    $("v-contador").textContent = `${actual + 1} / ${u.galeria.length}`;
+    $("v-contador").textContent = `${actual + 1} / ${lista.length}`;
   }
-  function abrir(i){ mostrar(i); visor.classList.add("abierto"); document.body.style.overflow = "hidden"; }
+  function abrir(nueva, i){
+    lista = nueva; mostrar(i);
+    visor.classList.add("abierto");
+    document.body.style.overflow = "hidden";
+  }
   function cerrar(){ visor.classList.remove("abierto"); document.body.style.overflow = ""; }
 
   $("galeria").addEventListener("click", e => {
     const b = e.target.closest(".g-item");
-    if (b) abrir(parseInt(b.dataset.i, 10));
+    if (b) abrir(u.galeria, parseInt(b.dataset.i, 10));
+  });
+
+  const pasos = $("sec-pasos");
+  if (pasos) pasos.addEventListener("click", e => {
+    const b = e.target.closest(".sec-foto");
+    if (b) abrir(u.secuencia.pasos, parseInt(b.dataset.sec, 10));
   });
   $("v-cerrar").addEventListener("click", cerrar);
   $("v-prev").addEventListener("click", e => { e.stopPropagation(); mostrar(actual - 1); });

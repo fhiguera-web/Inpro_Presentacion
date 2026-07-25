@@ -9,8 +9,14 @@ servidor; el internet solo mejora la tipografía Raleway y el enlace al catálog
 ```
 WEB_INPROCONFI/
 ├── index.html               ← La página (diseño + ficha del asesor)
+├── unidad.html              ← Ficha ampliada de una unidad de negocio.
+│                              Se abre en ventana nueva: unidad.html?u=servicios
+│                              No se edita: todo su contenido sale de datos/unidades.js
 ├── datos/
 │   ├── casos-exito.js       ← Casos de éxito (editable, ver abajo)
+│   ├── unidades.js          ← Las 4 unidades de negocio: catálogo de servicios,
+│   │                          galería de fotos, cifras y la secuencia "paso a paso"
+│   ├── noticias.js          ← Noticias del sector (pida "actualiza las noticias")
 │   └── productos.js         ← Fichas técnicas de productos (editable)
 ├── img/                     ← TODAS las fotografías, organizadas por sección
 │   ├── _NUEVAS_FOTOS/       ← SUELTE AQUÍ las fotos nuevas (ver su LEEME.md)

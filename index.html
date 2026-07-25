@@ -1031,6 +1031,53 @@ nav.compacta .nav-inner img{height:31px}
   box-shadow:0 10px 26px rgba(33,82,158,.28);
 }
 .unidad-cta svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* ---------- Tira "paso a paso" bajo una unidad ----------
+   Resumen visual de un trabajo real; el detalle vive en la ficha ampliada. */
+.secuencia-mini{
+  margin:8px 0 12px;padding:34px 34px 30px;
+  background:#0e1c33;border-radius:24px;color:#fff;
+}
+.sm-cab{
+  display:flex;justify-content:space-between;align-items:baseline;
+  gap:16px;flex-wrap:wrap;margin-bottom:26px;
+}
+.sm-cab h4{font-size:clamp(19px,2.2vw,25px);font-weight:700;margin:0;letter-spacing:-.01em}
+.sm-cab span{
+  font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#0e1c33;background:var(--amarillo);padding:6px 12px;border-radius:5px;white-space:nowrap;
+}
+.sm-pasos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+@media(max-width:900px){.sm-pasos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.sm-pasos{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+.sm-paso{display:block;color:#fff}
+.sm-foto{
+  /* display:block es imprescindible: es un <span> y en línea la
+     relación de aspecto no se aplica y los rótulos se solapan. */
+  display:block;position:relative;overflow:hidden;
+  border-radius:14px;aspect-ratio:3/4;background:#16294a;
+}
+.sm-foto img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.3s cubic-bezier(.22,1,.36,1);
+}
+.sm-paso:hover .sm-foto img{transform:scale(1.07)}
+.sm-foto::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(6,16,34,.7),transparent 50%);
+}
+.sm-n{
+  position:absolute;left:11px;top:11px;z-index:2;
+  font-family:"Raleway",sans-serif;font-size:13px;font-weight:800;color:#0e1c33;
+  background:var(--amarillo);width:27px;height:27px;border-radius:8px;display:grid;place-items:center;
+}
+.sm-paso b{display:block;font-size:13.5px;font-weight:600;margin-top:11px;line-height:1.3}
+.sm-pie{
+  margin-top:22px;font-size:13.5px;color:#9fb0c8;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.sm-pie a{color:var(--amarillo);font-weight:700}
+.sm-pie a:hover{text-decoration:underline}
+
 .unidad .marco-img{position:relative}
 .unidad .marco-img .conteo-fotos{
   position:absolute;right:16px;top:16px;z-index:2;
@@ -1361,7 +1408,7 @@ nav.compacta .nav-inner img{height:31px}
     <div class="unidad">
       <a class="marco-img revelar" href="unidad.html?u=servicios" target="_blank" rel="noopener" aria-label="Abrir la ficha ampliada de Servicios y Mantenimiento">
         <img src="img/servicios/pruebas-subestacion-campo.jpg" alt="Cuadrilla INPROCONFI ejecutando pruebas eléctricas en subestación">
-        <span class="conteo-fotos">◲ 13 fotos</span>
+        <span class="conteo-fotos">◲ 21 fotos</span>
       </a>
       <div class="texto revelar">
         <div class="num-unidad">UNIDAD 01</div>
@@ -1381,6 +1428,9 @@ nav.compacta .nav-inner img{height:31px}
         </a>
       </div>
     </div>
+
+    <!-- Resumen del mantenimiento paso a paso (se arma desde datos/unidades.js) -->
+    <div class="revelar" data-secuencia="servicios"></div>
 
     <!-- 02 Proyectos Industriales -->
     <div class="unidad invertida">
@@ -1403,9 +1453,12 @@ nav.compacta .nav-inner img{height:31px}
       </div>
       <a class="marco-img revelar" href="unidad.html?u=proyectos-industriales" target="_blank" rel="noopener" aria-label="Abrir la ficha ampliada de Proyectos Industriales">
         <img src="img/proyectos/montaje-transformador-grua.jpg" alt="Maniobra con grúa para el montaje de un transformador de potencia en subestación">
-        <span class="conteo-fotos">◲ 13 fotos</span>
+        <span class="conteo-fotos">◲ 20 fotos</span>
       </a>
     </div>
+
+    <!-- Resumen del montaje paso a paso (se arma desde datos/unidades.js) -->
+    <div class="revelar" data-secuencia="proyectos-industriales"></div>
 
     <!-- 03 Infraestructura Utilities -->
     <div class="unidad">
@@ -2116,6 +2169,7 @@ nav.compacta .nav-inner img{height:31px}
 <script src="datos/productos.js?v=5"></script>
 <script src="datos/noticias.js?v=1"></script>
 <script src="datos/proyectos-schneider.js?v=1"></script>
+<script src="datos/unidades.js?v=2"></script>
 <script>
 /* ---------- Casos de éxito: tarjetas + ficha desplegable (modal) ---------- */
 (function(){
@@ -2302,6 +2356,39 @@ nav.compacta .nav-inner img{height:31px}
         <div class="sp-tecs">${p.tecnologias.map(t => `<span class="sp-tec">${t}</span>`).join("")}</div>
       </div>`;
     cont.appendChild(d);
+  });
+})();
+
+/* ---------- Secuencias "paso a paso" bajo las unidades ----------
+   Se arman desde datos/unidades.js para no duplicar el contenido:
+   aquí va el resumen, y la ficha ampliada lleva el detalle. */
+(function(){
+  if (typeof UNIDADES === "undefined") return;
+  document.querySelectorAll("[data-secuencia]").forEach(slot => {
+    const u = UNIDADES[slot.dataset.secuencia];
+    if (!u || !u.secuencia) { slot.remove(); return; }
+    const s = u.secuencia;
+    const enlace = `unidad.html?u=${u.id}`;
+    slot.className = "secuencia-mini revelar";
+    slot.innerHTML = `
+      <div class="sm-cab">
+        <h4>${s.titulo}</h4>
+        <span>${s.proyecto}</span>
+      </div>
+      <div class="sm-pasos">
+        ${s.pasos.map(p => `
+          <a class="sm-paso" href="${enlace}" target="_blank" rel="noopener" title="${p.pie}">
+            <span class="sm-foto">
+              <img src="${p.src}" alt="${p.pie}" loading="lazy">
+              <span class="sm-n">${p.n}</span>
+            </span>
+            <b>${p.titulo}</b>
+          </a>`).join("")}
+      </div>
+      <div class="sm-pie">
+        <span>${s.intro.split(".")[0]}.</span>
+        <a href="${enlace}" target="_blank" rel="noopener">Ver la secuencia completa →</a>
+      </div>`;
   });
 })();
 

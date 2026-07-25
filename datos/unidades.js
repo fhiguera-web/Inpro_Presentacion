@@ -18,6 +18,9 @@
    - intro:     párrafo de apertura
    - portada:   fotografía de cabecera (ancha)
    - servicios: [{ titulo, detalle }] — el catálogo de la unidad
+   - secuencia: OPCIONAL, un trabajo real contado paso a paso:
+                { titulo, intro, proyecto, pasos: [{ n, titulo, texto, src, pie }] }
+                Los mismos pasos aparecen resumidos en la portada.
    - galeria:   [{ src, pie }] — fotografías del trabajo real
    - datos:     [{ num, txt }] — cifras de la unidad (se animan solas)
    - cierre:    párrafo de cierre antes del llamado a la acción
@@ -49,8 +52,43 @@ const UNIDADES = {
       { titulo: "Mallas de puesta a tierra",
         detalle: "Construcción y mantenimiento, con medición de resistencia y verificación de continuidad — la base de la seguridad de toda la instalación." }
     ],
+    secuencia: {
+      titulo: "Un mantenimiento de subestación, paso a paso",
+      intro: "Una intervención programada sobre un transformador de potencia WEG en su bahía: del reconocimiento del equipo a dejarlo listo para volver a servicio. Todo trabajo sobre el tanque se ejecuta con arnés y línea de vida, con la bahía desenergizada y puesta a tierra antes de subir.",
+      proyecto: "Transformador de potencia WEG · mayo de 2025",
+      pasos: [
+        { n: "01", titulo: "Reconocimiento del equipo",
+          texto: "Inspección visual del transformador en su bahía: tanque, radiadores, conservador y conexiones antes de intervenir.",
+          src: "img/servicios/mtto-trafo-01-equipo.jpg",
+          pie: "Transformador de potencia en su bahía, antes de la intervención" },
+        { n: "02", titulo: "Bushings de alta tensión",
+          texto: "Trabajo sobre el lado de alta: limpieza, verificación de sellos y ajuste de las conexiones en el bushing H3.",
+          src: "img/servicios/mtto-trafo-02-bushings.jpg",
+          pie: "Intervención en el bushing H3 de alta tensión, con arnés y línea de vida" },
+        { n: "03", titulo: "Bornes X0 y X1",
+          texto: "Revisión de los bornes de baja tensión y del sistema de refrigeración forzada: ventiladores M101 y M102.",
+          src: "img/servicios/mtto-trafo-03-bornes.jpg",
+          pie: "Bornes X0 y X1 junto a los ventiladores de refrigeración forzada" },
+        { n: "04", titulo: "Ajuste de conexiones",
+          texto: "Ajuste y verificación del conexionado de potencia. Una conexión floja es el origen del punto caliente que aparece meses después en la termografía.",
+          src: "img/servicios/mtto-trafo-04-conexiones.jpg",
+          pie: "Ajuste de las conexiones de potencia sobre el transformador" },
+        { n: "05", titulo: "Equipo listo para operar",
+          texto: "Cierre de la intervención, retiro de las puestas a tierra temporales y entrega del protocolo firmado de todo lo ejecutado.",
+          src: "img/servicios/mtto-trafo-05-panoramica.jpg",
+          pie: "La bahía completa, con el transformador listo para volver a servicio" }
+      ]
+    },
     galeria: [
       { src: "img/servicios/pruebas-subestacion-campo.jpg", pie: "Cuadrilla ejecutando pruebas eléctricas en subestación energizada" },
+      { src: "img/servicios/mtto-trafo-02-bushings.jpg",    pie: "Intervención en el bushing H3 de alta tensión" },
+      { src: "img/servicios/mtto-trafo-altura.jpg",         pie: "Trabajo en altura sobre el tanque, con arnés y línea de vida" },
+      { src: "img/servicios/mtto-trafo-03-bornes.jpg",      pie: "Bornes X0 y X1 del transformador de potencia" },
+      { src: "img/servicios/mtto-trafo-04-conexiones.jpg",  pie: "Ajuste de las conexiones de potencia" },
+      { src: "img/servicios/mtto-trafo-refrigeracion.jpg",  pie: "Sistema de refrigeración forzada del transformador" },
+      { src: "img/servicios/mtto-trafo-01-equipo.jpg",      pie: "Transformador de potencia WEG en su bahía" },
+      { src: "img/servicios/mtto-trafo-bahia.jpg",          pie: "Vista de la bahía con el transformador intervenido" },
+      { src: "img/servicios/mtto-trafo-05-panoramica.jpg",  pie: "Panorámica de la subestación tras la intervención" },
       { src: "img/servicios/pruebas-transformadores.jpg",   pie: "Pruebas de diagnóstico sobre transformador de potencia" },
       { src: "img/servicios/analisis-aceite.jpg",           pie: "Toma de muestra de aceite dieléctrico para análisis de laboratorio" },
       { src: "img/servicios/pruebas-cables.jpg",            pie: "Ensayo de descargas parciales en cable de media tensión" },
@@ -96,7 +134,41 @@ const UNIDADES = {
       { titulo: "Comisionado y puesta en marcha",
         detalle: "Baja, media y alta tensión: pruebas punto a punto, verificación funcional y energización asistida." }
     ],
+    secuencia: {
+      titulo: "Un montaje electromecánico, paso a paso",
+      intro: "El izaje y montaje de un grupo electrógeno sobre su base definitiva, maniobrando entre estructuras y líneas existentes. Cada maniobra se ejecuta con plan de izaje, aparejos con certificación vigente y el área acordonada bajo supervisión permanente.",
+      proyecto: "Grupo electrógeno de 915 kVA · marzo de 2025",
+      pasos: [
+        { n: "01", titulo: "Posicionamiento",
+          texto: "Grúa telescópica estabilizada sobre terreno compactado, con el equipo aún sobre la plataforma de transporte.",
+          src: "img/proyectos/izaje-01-posicionamiento.jpg",
+          pie: "Grúa telescópica estabilizada junto al punto de descarga" },
+        { n: "02", titulo: "Aparejamiento",
+          texto: "Eslingas y grilletes con certificación vigente, verificación de los puntos de izaje del equipo y prueba de carga en suspensión.",
+          src: "img/proyectos/izaje-02-aparejamiento.jpg",
+          pie: "Aparejamiento del grupo electrógeno antes del izaje" },
+        { n: "03", titulo: "Izaje",
+          texto: "Maniobra controlada por encima de estructuras y líneas existentes, con vientos de guía y área acordonada.",
+          src: "img/proyectos/izaje-03-izaje.jpg",
+          pie: "Grupo electrógeno suspendido durante la maniobra de izaje" },
+        { n: "04", titulo: "Descenso",
+          texto: "Aproximación milimétrica hasta la base, sorteando el poste y la estructura del área de descarga.",
+          src: "img/proyectos/izaje-04-descenso.jpg",
+          pie: "Descenso del equipo hacia su base definitiva" },
+        { n: "05", titulo: "Instalación",
+          texto: "Nivelación sobre la losa, anclaje y conexionado. De aquí siguen las pruebas de arranque y la puesta en servicio.",
+          src: "img/proyectos/izaje-05-instalado.jpg",
+          pie: "Grupo electrógeno posicionado sobre su base, listo para anclaje y conexionado" }
+      ]
+    },
     galeria: [
+      { src: "img/proyectos/izaje-03-izaje.jpg",            pie: "Grupo electrógeno de 915 kVA suspendido durante el izaje" },
+      { src: "img/proyectos/izaje-grua-sitio.jpg",          pie: "Grúa telescópica y equipo en el punto de descarga" },
+      { src: "img/proyectos/izaje-02-aparejamiento.jpg",    pie: "Aparejamiento con eslingas y grilletes certificados" },
+      { src: "img/proyectos/izaje-carga-suspendida.jpg",    pie: "Carga suspendida sobre el área de maniobra" },
+      { src: "img/proyectos/izaje-maniobra-estructuras.jpg",pie: "Maniobra entre estructuras y líneas existentes" },
+      { src: "img/proyectos/izaje-04-descenso.jpg",         pie: "Descenso del grupo hacia su base" },
+      { src: "img/proyectos/izaje-05-instalado.jpg",        pie: "Equipo posicionado sobre la losa" },
       { src: "img/proyectos/planta-autogeneracion-exterior.jpg", pie: "Planta de autogeneración: sala de generadores, BESS y edificio de control" },
       { src: "img/proyectos/montaje-electromecanico.jpg",   pie: "Montaje electromecánico en obra" },
       { src: "img/proyectos/montaje-estructuras-1.jpg",     pie: "Izaje y montaje de estructuras de patio" },
@@ -113,8 +185,8 @@ const UNIDADES = {
     ],
     datos: [
       { num: "69 kV",  txt: "Subestaciones ejecutadas llave en mano" },
-      { num: "2500",   txt: "kVA por transformador instalado en patio" },
-      { num: "2014",   txt: "Año desde el que ejecutamos proyectos" }
+      { num: "915 kVA",txt: "Último grupo electrógeno montado e instalado" },
+      { num: "2500",   txt: "kVA por transformador instalado en patio" }
     ],
     cierre: "Un solo contrato, un solo interlocutor y un solo responsable del resultado. Es la razón por la que nuestros clientes nos vuelven a llamar para la siguiente etapa."
   },

@@ -83,7 +83,7 @@ const CASOS_EXITO = [
     ],
     beneficio: "En palabras del cliente: procesos optimizados, reducción significativa de las pérdidas de producto y ahorro de innumerables horas de trabajo. La confiabilidad dejó de ser una preocupación.",
     imagen: "img/casos/nicovita.jpg",
-    fotos: ["img/casos/nicovita.jpg", "img/servicios/mantenimiento-subestaciones.jpg", "img/servicios/pruebas-electricas.jpg"]
+    fotos: ["img/casos/nicovita.jpg", "img/servicios/mantenimiento-subestacion-69kv.jpg", "img/servicios/pruebas-electricas.jpg"]
   },
   {
     cliente: "Skretting",
@@ -97,7 +97,7 @@ const CASOS_EXITO = [
     ],
     beneficio: "La planta cuenta con un respaldo dimensionado a su demanda real y mantenido por el mismo equipo que lo diseñó: una sola responsabilidad, cero excusas.",
     imagen: "img/casos/skretting.jpg",
-    fotos: ["img/casos/skretting.jpg", "img/casos/skretting-pruebas-baterias.jpg", "img/generacion/control-generacion.jpg", "img/generacion/servicio-generadores.jpg", "img/casos/skretting-logo.jpg"]
+    fotos: ["img/casos/skretting.jpg", "img/casos/skretting-pruebas-baterias.jpg", "img/generacion/sala-generadores-real.jpg", "img/generacion/servicio-generadores.jpg", "img/casos/skretting-logo.jpg"]
   },
   {
     cliente: "Grupo Difare e Inbalnor",
@@ -111,6 +111,6 @@ const CASOS_EXITO = [
     ],
     beneficio: "“Gracias a Inproconfi y su servicio 24/7, la crisis de energía en Ecuador en el 2024 pasó desapercibida.” — Grupo Difare. La operación no se detuvo ni un minuto.",
     imagen: "img/casos/difare-inbalnor.jpg",
-    fotos: ["img/casos/difare-inbalnor.jpg", "img/generacion/control-generacion.jpg", "img/casos/difare-logo.jpg"]
+    fotos: ["img/casos/difare-inbalnor.jpg", "img/generacion/generador-contenedor-sitio.jpg", "img/generacion/sala-generadores-real.jpg", "img/casos/difare-logo.jpg"]
   }
 ];

@@ -29,7 +29,7 @@
   --max-w:     1200px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:auto}
+html{scroll-behavior:smooth}
 section[id],div[id].full-bleed{scroll-margin-top:70px}
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -37,6 +37,11 @@ body{
   background:var(--blanco);
   line-height:1.5;
   -webkit-font-smoothing:antialiased;
+  /* Ninguna animación ni redondeo de rejilla puede provocar barra
+     horizontal en móvil. Se usa "clip" y no "hidden" porque hidden
+     convertiría al body en contenedor de scroll y rompería el
+     position:sticky de la navegación. */
+  overflow-x:clip;
 }
 h1,h2,h3,.titulo{font-family:"Raleway",-apple-system,"Segoe UI",sans-serif;text-wrap:balance}
 img{max-width:100%;display:block}
@@ -280,8 +285,7 @@ section{padding:110px 0}
   display:flex;flex-direction:column;
 }
 .caso:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.09)}
-.caso img{width:100%;height:260px;object-fit:cover;transition:transform 1.4s cubic-bezier(.22,1,.36,1)}
-.caso:hover > img{transform:scale(1.03)}
+/* La portada del caso se define en el bloque "formato de tarjeta v2" */
 .caso-cuerpo{padding:32px 34px 36px;flex:1;display:flex;flex-direction:column}
 .caso-sector{
   font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
@@ -796,6 +800,245 @@ footer strong{color:#fff}
 }
 .revelar.visible{opacity:1;transform:none}
 
+/* Variantes direccionales: mismo sistema, distinto punto de entrada.
+   Se usan para que las columnas de una fila no entren todas igual. */
+.revelar.rev-izq{transform:translateX(-26px)}
+.revelar.rev-der{transform:translateX(26px)}
+.revelar.rev-zoom{transform:scale(.965)}
+.revelar.rev-izq.visible,
+.revelar.rev-der.visible,
+.revelar.rev-zoom.visible{transform:none}
+
+/* La línea amarilla se traza sola al aparecer el bloque */
+.revelar .linea-amarilla{
+  width:0;
+  transition:width .85s cubic-bezier(.22,1,.36,1) .15s;
+}
+.revelar.visible .linea-amarilla{width:64px}
+
+/* ---------- Barra de progreso de lectura ---------- */
+.progreso{
+  position:fixed;top:0;left:0;height:2.5px;width:0;z-index:200;
+  background:linear-gradient(90deg,var(--azul),var(--celeste),var(--amarillo));
+  transition:width .12s linear;
+}
+
+/* ---------- Navegación: se compacta al bajar ---------- */
+nav{transition:box-shadow .4s ease, background .4s ease}
+nav.compacta{
+  background:rgba(255,255,255,.94);
+  box-shadow:0 4px 24px rgba(15,30,60,.09);
+}
+.nav-inner{transition:height .4s cubic-bezier(.22,1,.36,1)}
+nav.compacta .nav-inner{height:54px}
+.nav-inner img{transition:height .4s cubic-bezier(.22,1,.36,1)}
+nav.compacta .nav-inner img{height:31px}
+
+/* ---------- Botón volver arriba ---------- */
+.arriba{
+  position:fixed;right:22px;bottom:22px;z-index:120;
+  width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;
+  background:var(--azul);color:#fff;font-size:19px;line-height:1;
+  box-shadow:0 6px 22px rgba(15,30,60,.26);
+  opacity:0;visibility:hidden;transform:translateY(12px) scale(.9);
+  transition:opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1), visibility .35s, background .3s ease;
+}
+.arriba.visible{opacity:1;visibility:visible;transform:none}
+.arriba:hover{background:var(--azul-osc);transform:translateY(-3px)}
+@media print{.arriba,.progreso{display:none}}
+
+/* ---------- Micro-interacciones de tarjetas e imágenes ---------- */
+/* El contenedor recorta; la imagen hace un acercamiento lento al pasar el cursor. */
+/* El marco recorta y la imagen se acerca lentamente: el zoom nunca
+   desborda la esquina redondeada. */
+.marco-img{display:block;position:relative;overflow:hidden;border-radius:24px}
+.marco-img img{display:block;width:100%;transition:transform 1.6s cubic-bezier(.22,1,.36,1)}
+.unidad:hover .marco-img img,
+.sch-dos:hover .marco-img img,
+.mg-bess:hover .marco-img img,
+.dos-col:hover .marco-img img{transform:scale(1.03)}
+
+/* Las cifras suben ligeramente mientras cuentan */
+.cifras .num{transition:transform .5s cubic-bezier(.22,1,.36,1)}
+
+/* ---------- Modales: entrada suave ----------
+   El modal pasa de display:none a flex, así que la entrada se hace con
+   keyframes (una transición no arrancaría desde display:none). */
+@keyframes modal-entra{
+  from{opacity:0;transform:translateY(20px) scale(.985)}
+  to  {opacity:1;transform:none}
+}
+@keyframes modal-fondo{from{opacity:0} to{opacity:1}}
+.modal-caso.abierto{animation:modal-fondo .3s ease}
+.modal-caso.abierto .mc-tarjeta{animation:modal-entra .45s cubic-bezier(.22,1,.36,1)}
+
+/* ---------- Preferencia de movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce){
+  .revelar,.revelar.rev-izq,.revelar.rev-der,.revelar.rev-zoom{
+    opacity:1 !important;transform:none !important;transition:none !important;
+  }
+  .revelar .linea-amarilla{width:64px !important;transition:none !important}
+  .marco-img img,.caso-portada img,.ren-card .ren-foto img{transition:none !important}
+  .unidad:hover .marco-img img,.sch-dos:hover .marco-img img,
+  .mg-bess:hover .marco-img img,.dos-col:hover .marco-img img,
+  .caso:hover .caso-portada img,.ren-card:hover .ren-foto img{transform:none !important}
+  .arriba{transition:none !important}
+  .progreso{display:none}
+}
+
+/* ============================================================
+   CASOS DE ÉXITO — formato de tarjeta v2
+   Tarjetas de altura uniforme: la portada lleva el sector y el
+   contador de fotos; el cuerpo resume y el detalle vive en la ficha.
+   ============================================================ */
+.caso{position:relative;cursor:pointer}
+.caso-portada{position:relative;overflow:hidden;flex:none}
+.caso-portada::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,22,45,.72) 0%,rgba(10,22,45,.12) 45%,transparent 72%);
+}
+.caso-portada img{width:100%;height:230px;object-fit:cover;display:block}
+.caso .caso-sector-flot{
+  position:absolute;left:22px;bottom:18px;z-index:2;
+  font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:#fff;background:rgba(33,82,158,.85);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  padding:6px 12px;border-radius:980px;
+}
+.caso .caso-fotos{
+  position:absolute;right:18px;top:18px;z-index:2;
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11.5px;font-weight:600;color:#fff;
+  background:rgba(10,22,45,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  padding:5px 10px;border-radius:980px;
+}
+.caso .caso-cliente{
+  font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--celeste);margin-bottom:8px;
+}
+.caso h4{margin:0 0 16px}
+.caso .caso-reto{
+  font-size:14.5px;color:#3a3a3c;margin-bottom:18px;
+  border-left:3px solid var(--gris-suave);padding-left:14px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.caso .caso-alcance{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.caso .caso-chip{
+  font-size:12px;color:var(--azul);background:#EFF4FC;
+  border:1px solid #dde7f7;border-radius:8px;padding:5px 10px;line-height:1.3;
+}
+.caso .caso-chip.mas{background:transparent;border-style:dashed;color:var(--gris)}
+.caso .beneficio{margin-top:auto}
+.caso .ver-ficha{
+  margin-top:16px;font-size:13.5px;font-weight:700;color:var(--azul);
+  display:inline-flex;align-items:center;gap:7px;
+}
+.caso .ver-ficha span{transition:transform .35s cubic-bezier(.22,1,.36,1);display:inline-block}
+.caso:hover .ver-ficha span{transform:translateX(5px)}
+.caso.oculto{display:none}
+/* Reemplaza la regla antigua de zoom (la portada ahora es un contenedor) */
+.caso:hover .caso-portada img{transform:scale(1.045)}
+.caso-portada img{transition:transform 1.4s cubic-bezier(.22,1,.36,1)}
+
+/* ---------- Noticia destacada ---------- */
+.noticia.destacada{
+  grid-column:1 / -1;
+  display:grid;grid-template-columns:1.35fr 1fr;gap:34px;align-items:start;
+  border-left:4px solid var(--amarillo);
+}
+@media(max-width:860px){.noticia.destacada{grid-template-columns:1fr;gap:18px}}
+.noticia.destacada h3{font-size:clamp(21px,2.4vw,28px);line-height:1.22}
+.noticia.destacada .n-resumen{font-size:15.5px}
+.noticia.destacada .n-angulo{margin-top:0}
+.noticia.destacada > div{display:flex;flex-direction:column}
+/* La columna derecha se centra: sin ella el bloque queda con un hueco alto */
+.noticia.destacada > div:last-child{justify-content:center}
+.noticia.destacada .n-fuente{margin-top:16px}
+.n-destacada-tag{
+  align-self:flex-start;font-size:10.5px;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;color:#8a6d00;background:var(--amarillo);
+  padding:4px 10px;border-radius:5px;margin-bottom:12px;
+}
+/* En columna estrecha la fecha baja de línea en vez de estrujar la categoría */
+.noticia .n-meta{flex-wrap:wrap}
+
+/* ============================================================
+   ENERGÍAS RENOVABLES
+   ============================================================ */
+#renovables{background:linear-gradient(180deg,#F4F8F5 0%,#ffffff 100%)}
+#renovables .etiqueta{color:#1E7B34}
+#renovables .linea-amarilla{background:#3DCD58}
+.ren-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:60px;
+}
+@media(max-width:960px){.ren-grid{grid-template-columns:1fr}}
+.ren-card{
+  background:#fff;border:1px solid #e6efe8;border-radius:24px;overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1);
+}
+.ren-card:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(20,60,35,.11)}
+.ren-card .ren-foto{position:relative;height:210px;overflow:hidden;flex:none}
+.ren-card .ren-foto img{width:100%;height:100%;object-fit:cover;transition:transform 1.5s cubic-bezier(.22,1,.36,1)}
+.ren-card:hover .ren-foto img{transform:scale(1.05)}
+.ren-card .ren-kicker{
+  position:absolute;left:18px;bottom:16px;z-index:2;color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  background:rgba(27,138,52,.88);padding:5px 11px;border-radius:980px;
+}
+.ren-card .ren-foto::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,32,18,.6),transparent 62%);
+}
+.ren-cuerpo{padding:28px 28px 30px;display:flex;flex-direction:column;flex:1}
+.ren-cuerpo h3{font-size:20px;font-weight:700;margin-bottom:10px}
+.ren-cuerpo p{font-size:14.5px;color:var(--gris);margin-bottom:16px}
+.ren-cuerpo ul{margin-top:auto}
+.ren-cuerpo li{
+  font-size:14px;color:#3a3a3c;padding-left:20px;position:relative;margin-bottom:7px;
+}
+.ren-cuerpo li::before{
+  content:"";position:absolute;left:0;top:8px;width:7px;height:7px;
+  border-radius:50%;background:#3DCD58;
+}
+.ren-cifras{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  margin-top:56px;padding:40px 34px;
+  background:#fff;border:1px solid #e6efe8;border-radius:24px;text-align:center;
+}
+@media(max-width:800px){.ren-cifras{grid-template-columns:repeat(2,1fr);padding:32px 22px}}
+.ren-cifras .num{
+  font-family:"Raleway",sans-serif;font-size:clamp(28px,3.4vw,42px);font-weight:800;
+  color:#1E7B34;letter-spacing:-.02em;font-variant-numeric:tabular-nums;
+}
+.ren-cifras .txt{color:var(--gris);font-size:14px;margin-top:6px}
+.ren-nota{
+  margin-top:26px;font-size:13.5px;color:var(--gris);text-align:center;
+  max-width:760px;margin-left:auto;margin-right:auto;
+}
+
+/* ============================================================
+   UNIDADES DE NEGOCIO — enlace a la ficha ampliada
+   ============================================================ */
+.unidad-cta{
+  display:inline-flex;align-items:center;gap:9px;margin-top:26px;
+  background:var(--azul);color:#fff;font-weight:700;font-size:14.5px;
+  padding:13px 24px;border-radius:980px;
+  transition:background .3s ease, transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
+}
+.unidad-cta:hover{
+  background:var(--azul-osc);transform:translateY(-2px);
+  box-shadow:0 10px 26px rgba(33,82,158,.28);
+}
+.unidad-cta svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.unidad .marco-img{position:relative}
+.unidad .marco-img .conteo-fotos{
+  position:absolute;right:16px;top:16px;z-index:2;
+  font-size:11.5px;font-weight:600;color:#fff;
+  background:rgba(10,22,45,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  padding:5px 11px;border-radius:980px;
+}
+
 /* ---------- Impresión ---------- */
 /* Por defecto se imprime la ficha del asesor; si hay una ficha de
    caso de éxito abierta, se imprime únicamente esa ficha. */
@@ -824,6 +1067,9 @@ footer strong{color:#fff}
 </head>
 <body>
 
+<!-- Barra de progreso de lectura -->
+<div class="progreso" id="progreso" aria-hidden="true"></div>
+
 <!-- ================= NAVEGACIÓN ================= -->
 <nav>
   <div class="nav-inner">
@@ -834,6 +1080,7 @@ footer strong{color:#fff}
       <a href="#razones">Ventajas</a>
       <a href="#casos">Casos</a>
       <a href="#unidades">Servicios</a>
+      <a href="#renovables">Renovables</a>
       <a href="#schneider">Schneider</a>
       <a href="#productos">Productos</a>
       <a href="#noticias">Noticias</a>
@@ -933,7 +1180,7 @@ footer strong{color:#fff}
       <div class="contenedor">
         <span class="etiqueta" style="color:var(--amarillo)">Proyecto Insignia</span>
         <h2>Protegemos el sistema eléctrico<br>de todo un país</h2>
-        <p>El Sistema de Protección Sistémica (SPS) del Ecuador detecta contingencias críticas en el Sistema Nacional Interconectado y ejecuta acciones remediales en menos de 200 milisegundos para evitar apagones en cascada. INPROCONFI es la empresa que lo instala y lo pone en servicio.</p>
+        <p>El Sistema de Protección Sistémica (SPS) del Ecuador detecta contingencias críticas en el Sistema Nacional Interconectado y ejecuta acciones correctivas en menos de 200 milisegundos para evitar apagones en cascada. INPROCONFI es la empresa que lo instala y lo pone en servicio.</p>
       </div>
     </div>
   </div>
@@ -1112,7 +1359,10 @@ footer strong{color:#fff}
 
     <!-- 01 Servicios y Mantenimiento -->
     <div class="unidad">
-      <img class="revelar" src="img/servicios/pruebas-subestacion-campo.jpg" alt="Cuadrilla INPROCONFI ejecutando pruebas eléctricas en subestación">
+      <a class="marco-img revelar" href="unidad.html?u=servicios" target="_blank" rel="noopener" aria-label="Abrir la ficha ampliada de Servicios y Mantenimiento">
+        <img src="img/servicios/pruebas-subestacion-campo.jpg" alt="Cuadrilla INPROCONFI ejecutando pruebas eléctricas en subestación">
+        <span class="conteo-fotos">◲ 13 fotos</span>
+      </a>
       <div class="texto revelar">
         <div class="num-unidad">UNIDAD 01</div>
         <h3>Servicios y Mantenimiento</h3>
@@ -1125,6 +1375,10 @@ footer strong{color:#fff}
           <li>Termografía, calidad de energía y calidad de gases SF6</li>
           <li>Construcción y mantenimiento de mallas de puesta a tierra</li>
         </ul>
+        <a class="unidad-cta" href="unidad.html?u=servicios" target="_blank" rel="noopener">
+          Ver la unidad completa
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14L21 3"/><path d="M21 14v7H3V3h7"/></svg>
+        </a>
       </div>
     </div>
 
@@ -1142,13 +1396,23 @@ footer strong{color:#fff}
           <li>Montaje, secado en campo y diagnóstico integral de transformadores</li>
           <li>Comisionado y puesta en marcha de proyectos en baja, media y alta tensión</li>
         </ul>
+        <a class="unidad-cta" href="unidad.html?u=proyectos-industriales" target="_blank" rel="noopener">
+          Ver la unidad completa
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14L21 3"/><path d="M21 14v7H3V3h7"/></svg>
+        </a>
       </div>
-      <img class="revelar" src="img/proyectos/planta-autogeneracion-exterior.jpg" alt="Planta de autogeneración con sala de generadores, BESS y edificio de control">
+      <a class="marco-img revelar" href="unidad.html?u=proyectos-industriales" target="_blank" rel="noopener" aria-label="Abrir la ficha ampliada de Proyectos Industriales">
+        <img src="img/proyectos/montaje-transformador-grua.jpg" alt="Maniobra con grúa para el montaje de un transformador de potencia en subestación">
+        <span class="conteo-fotos">◲ 13 fotos</span>
+      </a>
     </div>
 
     <!-- 03 Infraestructura Utilities -->
     <div class="unidad">
-      <img class="revelar" src="img/proyectos/pruebas-reles-inyeccion.jpg" alt="Pruebas de relés de protección por inyección secundaria">
+      <a class="marco-img revelar" href="unidad.html?u=utilities" target="_blank" rel="noopener" aria-label="Abrir la ficha ampliada de Proyectos de Infraestructura Utilities">
+        <img src="img/proyectos/pruebas-reles-inyeccion.jpg" alt="Pruebas de relés de protección por inyección secundaria">
+        <span class="conteo-fotos">◲ 10 fotos</span>
+      </a>
       <div class="texto revelar">
         <div class="num-unidad">UNIDAD 03</div>
         <h3>Proyectos de Infraestructura — Utilities</h3>
@@ -1160,6 +1424,10 @@ footer strong{color:#fff}
           <li>Estudios de cortocircuito y coordinación de protecciones</li>
           <li>Comisionado y puesta en marcha de proyectos</li>
         </ul>
+        <a class="unidad-cta" href="unidad.html?u=utilities" target="_blank" rel="noopener">
+          Ver la unidad completa
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14L21 3"/><path d="M21 14v7H3V3h7"/></svg>
+        </a>
       </div>
     </div>
 
@@ -1177,14 +1445,21 @@ footer strong{color:#fff}
           <li>Mantenimiento de transformadores hasta 500 kVA</li>
           <li>Servicio de electricista especializado in house</li>
         </ul>
+        <a class="unidad-cta" href="unidad.html?u=generacion" target="_blank" rel="noopener">
+          Ver la unidad completa
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14L21 3"/><path d="M21 14v7H3V3h7"/></svg>
+        </a>
       </div>
-      <img class="revelar" src="img/generacion/edificio-autogeneracion.jpg" alt="Edificio de autogeneración con generadores y radiadores">
+      <a class="marco-img revelar" href="unidad.html?u=generacion" target="_blank" rel="noopener" aria-label="Abrir la ficha ampliada de Generación Industrial">
+        <img src="img/generacion/edificio-autogeneracion.jpg" alt="Edificio de autogeneración con generadores y radiadores">
+        <span class="conteo-fotos">◲ 13 fotos</span>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- ================= GREEN ENERGY (full bleed) ================= -->
-<div class="full-bleed">
+<div class="full-bleed" id="green">
   <img src="img/fotovoltaico/fv-cubierta.jpg" alt="Sistema fotovoltaico sobre cubierta industrial">
   <div class="velo">
     <div class="contenedor">
@@ -1194,6 +1469,84 @@ footer strong{color:#fff}
     </div>
   </div>
 </div>
+
+<!-- ================= ENERGÍAS RENOVABLES ================= -->
+<section id="renovables">
+  <div class="contenedor">
+    <div class="centrado revelar">
+      <span class="etiqueta">Green Energy</span>
+      <h2 class="titulo">Renovables que se dimensionan<br>sobre su curva de carga</h2>
+      <p class="subtitulo">Instalar paneles no es un proyecto energético: es una compra. El proyecto empieza cuando alguien mide cómo consume su planta, calcula qué parte de esa energía conviene autogenerar y verifica que el sistema no comprometa la continuidad ni las protecciones existentes.</p>
+      <div class="linea-amarilla"></div>
+    </div>
+
+    <div class="ren-grid">
+      <article class="ren-card revelar rev-izq">
+        <div class="ren-foto">
+          <img src="img/fotovoltaico/fv-modulos-detalle.jpg" alt="Módulos fotovoltaicos montados sobre cubierta industrial" loading="lazy">
+          <span class="ren-kicker">Solar fotovoltaica</span>
+        </div>
+        <div class="ren-cuerpo">
+          <h3>Autoconsumo solar</h3>
+          <p>Generación en su propia cubierta o terreno, dimensionada para el consumo que realmente puede desplazar.</p>
+          <ul>
+            <li>Estudio del perfil de carga antes de definir la potencia</li>
+            <li>Diseño eléctrico e integración con el sistema existente</li>
+            <li>Coordinación de protecciones con generación distribuida</li>
+            <li>Montaje, comisionado y puesta en servicio</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="ren-card revelar rev-zoom">
+        <div class="ren-foto">
+          <img src="img/generacion/bess-contenedores.jpg" alt="Almacenamiento de energía BESS en contenedores" loading="lazy">
+          <span class="ren-kicker">Almacenamiento</span>
+        </div>
+        <div class="ren-cuerpo">
+          <h3>BESS: baterías que trabajan</h3>
+          <p>El almacenamiento convierte energía barata o excedente en disponibilidad y en ahorro de demanda facturada.</p>
+          <ul>
+            <li>Desde 60 kW hasta 4 MW, con capacidad de hasta 4 MWh</li>
+            <li>Corte de pico para no superar los límites contratados</li>
+            <li>Reserva de energía ante cortes de red</li>
+            <li>Operación conectada a red o formando red en isla</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="ren-card revelar rev-der">
+        <div class="ren-foto">
+          <img src="img/generacion/planta-exterior-bess.jpg" alt="Planta con generación y almacenamiento integrados" loading="lazy">
+          <span class="ren-kicker">Sistema híbrido</span>
+        </div>
+        <div class="ren-cuerpo">
+          <h3>Microred: todo gobernado junto</h3>
+          <p>Red pública, generadores, solar y baterías bajo un solo controlador que decide qué fuente usar en cada momento.</p>
+          <ul>
+            <li>Transición automática red ⇄ isla sin detener el proceso</li>
+            <li>Despacho optimizado por pronóstico y tarifa horaria</li>
+            <li>Maximización del autoconsumo renovable</li>
+            <li>Medición y analítica para reportar CO₂ evitado</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="ren-cifras revelar">
+      <div><div class="num">30%</div><div class="txt">Reducción posible del costo energético con optimización predictiva</div></div>
+      <div><div class="num">4 MWh</div><div class="txt">Capacidad máxima de almacenamiento en solución contenerizada</div></div>
+      <div><div class="num">60 kW</div><div class="txt">Potencia mínima desde la que configuramos un BESS</div></div>
+      <div><div class="num">5</div><div class="txt">Etapas del proyecto, de la auditoría a la operación</div></div>
+    </div>
+
+    <p class="ren-nota revelar">
+      Toda cifra de ahorro se valida antes de firmar: auditoría del sitio, perfil de carga real y modelado en ETAP.
+      Si el número no se sostiene en su operación, se lo decimos — y no hacemos el proyecto.
+      <a href="#microgrid" style="font-weight:600">Ver cómo funciona una microred ↓</a>
+    </p>
+  </div>
+</section>
 
 <!-- ================= ALIANZA SCHNEIDER (ECOXPERT) ================= -->
 <section id="schneider" class="sch">
@@ -1700,6 +2053,8 @@ footer strong{color:#fff}
   </div>
 </footer>
 
+<button class="arriba" id="btn-arriba" aria-label="Volver al inicio de la página" title="Volver arriba">↑</button>
+
 <!-- ================= MODAL: FICHA DE CASO DE ÉXITO ================= -->
 <div class="modal-caso" id="modal-caso" role="dialog" aria-modal="true">
   <div class="mc-tarjeta">
@@ -1768,24 +2123,54 @@ footer strong{color:#fff}
   if (!grid || typeof CASOS_EXITO === "undefined") return;
 
   /* --- Tarjetas resumidas: clic para abrir la ficha completa --- */
+  /* Resume el alcance en 3 etiquetas cortas + "+N más".
+     Corta en el primer signo de puntuación y, si aún es largo, en la
+     última palabra que quepa — así todas las etiquetas guardan el mismo
+     ritmo visual. El texto completo queda en el title y en la ficha. */
+  const CHIPS_VISIBLES = 3, LARGO_CHIP = 44;
+  function acortar(texto){
+    let t = texto.split(/[:(]/)[0].split(",")[0].trim();
+    if (t.length <= LARGO_CHIP) return t;
+    t = t.slice(0, LARGO_CHIP);
+    return t.slice(0, t.lastIndexOf(" ")).replace(/[\s.;-]+$/, "") + "…";
+  }
+  const esc = s => String(s).replace(/"/g, "&quot;");
+  function chipsAlcance(lista){
+    const items = lista.slice(0, CHIPS_VISIBLES).map(a =>
+      `<span class="caso-chip" title="${esc(a)}">${acortar(a)}</span>`
+    );
+    const resto = lista.length - CHIPS_VISIBLES;
+    if (resto > 0) items.push(`<span class="caso-chip mas">+${resto} más</span>`);
+    return items.join("");
+  }
+
   CASOS_EXITO.forEach((c, idx) => {
-    const solucion = (c.solucion || c.alcance || []).map(a => `<li>${a}</li>`).join("");
+    const alcance = c.solucion || c.alcance || [];
+    const nFotos  = (c.fotos && c.fotos.length) ? c.fotos.length : 1;
     const card = document.createElement("article");
     card.className = "caso revelar";
     card.innerHTML = `
-      <img src="${c.imagen}" alt="${c.cliente}">
+      <div class="caso-portada">
+        <img src="${c.imagen}" alt="${c.cliente}" loading="lazy">
+        <span class="caso-sector-flot">${c.sector}</span>
+        ${nFotos > 1 ? `<span class="caso-fotos">◲ ${nFotos} fotos</span>` : ""}
+      </div>
       <div class="caso-cuerpo">
-        <div class="caso-sector">${c.sector}</div>
-        <h3>${c.cliente}</h3>
+        <div class="caso-cliente">${c.cliente}</div>
         <h4>${c.titulo}</h4>
-        ${c.reto ? `<div class="acto">El reto</div><p class="reto">${c.reto}</p>` : ""}
-        <div class="acto">La solución</div>
-        <ul>${solucion}</ul>
+        ${c.reto ? `<p class="caso-reto">${c.reto}</p>` : ""}
+        <div class="caso-alcance">${chipsAlcance(alcance)}</div>
         ${(c.beneficio || c.resultado) ? `<div class="beneficio"><strong>El beneficio:</strong> ${c.beneficio || c.resultado}</div>` : ""}
-        <div class="ver-ficha">Ver ficha completa →</div>
+        <div class="ver-ficha">Ver ficha completa <span>→</span></div>
       </div>`;
     card.addEventListener("click", () => abrirCaso(idx));
     card.dataset.sector = c.sector;
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", `Ver ficha completa del caso ${c.cliente}`);
+    card.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrirCaso(idx); }
+    });
     grid.appendChild(card);
   });
 
@@ -1925,16 +2310,23 @@ footer strong{color:#fff}
   const grid = document.getElementById("noticias-grid");
   if (!grid || typeof NOTICIAS === "undefined") return;
   const claseCat = c => c.includes("Ecuador") ? "cat-ec" : c.includes("Equipos") ? "cat-eq" : "";
-  NOTICIAS.forEach(n => {
+  /* La noticia marcada como destacada encabeza la sección a doble ancho */
+  const ordenadas = [...NOTICIAS].sort((a, b) => (b.destacada === true) - (a.destacada === true));
+  ordenadas.forEach(n => {
     const card = document.createElement("article");
-    card.className = "noticia revelar";
+    card.className = "noticia revelar" + (n.destacada ? " destacada" : "");
     card.dataset.categoria = n.categoria;
-    card.innerHTML = `
+    const cabecera = `
+      ${n.destacada ? `<span class="n-destacada-tag">Lo más relevante ahora</span>` : ""}
       <div class="n-meta"><span class="n-cat ${claseCat(n.categoria)}">${n.categoria}</span><span class="n-fecha">${n.fecha}</span></div>
       <h3>${n.titulo}</h3>
-      <p class="n-resumen">${n.resumen}</p>
+      <p class="n-resumen">${n.resumen}</p>`;
+    const pie = `
       <div class="n-angulo"><b>Por qué le importa:</b> ${n.angulo}</div>
       <a class="n-fuente" href="${n.url}" target="_blank" rel="noopener">Leer en ${n.fuente} ↗</a>`;
+    card.innerHTML = n.destacada
+      ? `<div>${cabecera}</div><div>${pie}</div>`
+      : cabecera + pie;
     grid.appendChild(card);
   });
   const filtros = document.getElementById("filtros-noticias");
@@ -1965,6 +2357,69 @@ document.querySelectorAll(".revelar").forEach(el => {
   el.style.setProperty("--rev-delay", (Math.min(i, 5) * 80) + "ms");
   observador.observe(el);
 });
+
+/* ============================================================
+   MOVIMIENTO SUTIL DE LA PÁGINA
+   Todo lo de aquí se desactiva si el sistema pide menos movimiento.
+   ============================================================ */
+(function(){
+  const menosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* --- Barra de progreso + navegación compacta + botón volver arriba --- */
+  const barra  = document.getElementById("progreso");
+  const menu   = document.querySelector("nav");
+  const arriba = document.getElementById("btn-arriba");
+  let pendiente = false;
+
+  function alDesplazar(){
+    const y = window.scrollY;
+    const alto = document.documentElement.scrollHeight - window.innerHeight;
+    if (barra) barra.style.width = alto > 0 ? ((y / alto) * 100) + "%" : "0%";
+    if (menu)  menu.classList.toggle("compacta", y > 40);
+    if (arriba) arriba.classList.toggle("visible", y > 700);
+    pendiente = false;
+  }
+  window.addEventListener("scroll", () => {
+    if (!pendiente) { pendiente = true; requestAnimationFrame(alDesplazar); }
+  }, { passive: true });
+  alDesplazar();
+
+  if (arriba) arriba.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: menosMovimiento ? "auto" : "smooth" });
+  });
+
+  /* --- Cifras que cuentan al entrar en pantalla ---
+     Conserva prefijos y sufijos: "12 MVA" cuenta solo el 12,
+     "24/7" y "10+" mantienen su forma. */
+  if (!menosMovimiento) {
+    const numeros = document.querySelectorAll(".cifras .num, .ren-cifras .num");
+    const contador = new IntersectionObserver(entradas => {
+      entradas.forEach(e => {
+        if (!e.isIntersecting) return;
+        contador.unobserve(e.target);
+        const texto = e.target.textContent.trim();
+        const m = texto.match(/^([^\d]*)(\d+(?:[.,]\d+)?)(.*)$/);
+        if (!m || texto.includes("/")) return;      // "24/7" no se anima
+        const [, pre, cifra, post] = m;
+        const decimales = (cifra.split(/[.,]/)[1] || "").length;
+        const separador = cifra.includes(",") ? "," : ".";
+        const destino = parseFloat(cifra.replace(",", "."));
+        const inicio = performance.now();
+        const DURACION = 1100;
+        function paso(ahora){
+          const t = Math.min(1, (ahora - inicio) / DURACION);
+          const suave = 1 - Math.pow(1 - t, 3);          // easing de salida
+          const v = (destino * suave).toFixed(decimales).replace(".", separador);
+          e.target.textContent = pre + v + post;
+          if (t < 1) requestAnimationFrame(paso);
+        }
+        e.target.textContent = pre + (0).toFixed(decimales).replace(".", separador) + post;
+        requestAnimationFrame(paso);
+      });
+    }, { threshold: 0.5 });
+    numeros.forEach(n => contador.observe(n));
+  }
+})();
 
 /* ============================================================
    FICHA DEL ASESOR — captura, calificación ICP, SSO y agenda
